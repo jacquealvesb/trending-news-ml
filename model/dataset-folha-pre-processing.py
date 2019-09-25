@@ -32,37 +32,37 @@ def selectExamples(dataframe, dataColumn, categories, number): # returns a new d
 categoriesToDelete = ['ilustrada', 'ambiente', 'sobretudo', 'colunas', 'educação', 'banco-de-dados', 'opiniao', 'paineldoleitor', 'saopaulo', 'seminariosfolha', 'turismo', 'serafina', 'asmais', 'o-melhor-de-sao-paulo', 'bbc', 'comida', 'folhinha', 'especial', 'treinamento', 'multimidia', 'cenarios-2017', 'topofmind', 'dw', 'ombudsman', 'contas-de-casa', 'mulher', '2016', 'treinamentocienciaesaude', 'rfi', 'euronews', 'vice', 'bichos', 'infograficos', '2015']
 columnsText = ['title', 'date', 'subcategory','link']
 columnsTitle = ['text', 'date', 'subcategory','link']
-categoriesNation = ['poder', 'cotidiano']
-categoriesBusiness = ['mercado', 'empreendedorsocial']
-categoriesEntertainment = ['tv', 'musica', 'guia-de-livros-discos-filmes', 'guia-de-livros-filmes-discos', 'ilustrissima']
-categories = ['nation','business', 'world', 'sports', 'technology', 'entertainment', 'science', 'health']
+categories = {
+    'nation' : ['poder', 'cotidiano'],
+    'business': ['mercado', 'empreendedorsocial'], 
+    'world': ['mundo'], 
+    'sports': ['esporte'], 
+    'technology': ['tec'], 
+    'entertainment': ['tv', 'musica', 'guia-de-livros-discos-filmes', 'guia-de-livros-filmes-discos', 'ilustrissima'], 
+    'science': ['ciencia'], 
+    'health': ['equilibrioesaude']
+}
 
+##### Dataset with text-category
 textdf = removeColumns(df, columnsText)
 textdf = removeCategories(textdf, categoriesToDelete)
-textdf = mergeCategories(textdf,categoriesNation, 'nation')
-textdf = mergeCategories(textdf,categoriesBusiness, 'business')
-textdf = mergeCategories(textdf,categoriesEntertainment, 'entertainment')
-textdf = mergeCategories(textdf,['mundo'], 'world')
-textdf = mergeCategories(textdf,['esporte'], 'sports')
-textdf = mergeCategories(textdf,['tec'], 'technology')
-textdf = mergeCategories(textdf,['equillibrioesaude'], 'health')
-textdf = mergeCategories(textdf,['ciencia'], 'science')
-textdf = selectExamples(textdf, 'text', categories, 1500)
+
+for new, olds in categories.items(): # rename all old categories to the new name
+    textdf = mergeCategories(textdf, olds, new)
+
+textdf = selectExamples(textdf, 'text', list(categories.keys()), 1500)
 textdf = textdf[['text', 'category']]
 
 textdf.to_csv('pre-processed-text-dataset.csv', sep='\t')
 
+##### Dataset with title-category
 titledf = removeColumns(df, columnsTitle)
 titledf = removeCategories(titledf, categoriesToDelete)
-titledf = mergeCategories(titledf,categoriesNation, 'nation')
-titledf = mergeCategories(titledf,categoriesBusiness, 'business')
-titledf = mergeCategories(titledf,categoriesEntertainment, 'entertainment')
-titledf = mergeCategories(titledf,['mundo'], 'world')
-titledf = mergeCategories(titledf,['esporte'], 'sports')
-titledf = mergeCategories(titledf,['tec'], 'technology')
-titledf = mergeCategories(titledf,['equillibrioesaude'], 'health')
-titledf = mergeCategories(titledf,['ciencia'], 'science')
-titledf = selectExamples(titledf, 'title', categories, 1500)
+
+for new, olds in categories.items(): # rename all old categories to the new name
+    titledf = mergeCategories(titledf, olds, new)
+
+titledf = selectExamples(titledf, 'title', list(categories.keys()), 1500)
 titledf = titledf[['title', 'category']]
 
 titledf.to_csv('pre-processed-title-dataset.csv', sep='\t')
