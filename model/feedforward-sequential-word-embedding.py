@@ -34,7 +34,7 @@ x_test = pad_sequences(x_test, padding='post', maxlen=maxlen)
 embedding_dim = int(maxlen/2)
 model = Sequential()
 model.add(layers.Embedding(input_dim = vocab_size, output_dim = embedding_dim, input_length = maxlen))
-model.add(layers.Flatten())
+model.add(layers.GlobalMaxPool1D())
 model.add(layers.Dense(10, activation = 'relu')) # add a hidden layer 
 model.add(layers.Dense(1,activation='sigmoid')) # add output layer 
 model.compile(loss='binary_crossentropy',optimizer='adam',metrics=['accuracy'])
