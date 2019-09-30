@@ -8,13 +8,13 @@ from collections import defaultdict
 from heapq import nlargest
 
 
-df = pandas.read_csv('pre-processed-text-dataset.csv', sep='\t')
+df = pandas.read_csv('pre-processed-text-dataset.csv', sep='\t', )
 df.head()
+df['text'] = df['text'].values.astype('U')
 
-dataframe = df[:5]
 newDataframe = pandas.DataFrame(columns=['text','category'])
 
-for index, row in dataframe.iterrows():
+for index, row in df.iterrows():
     text = row['text']
     category = row['category']
 
@@ -39,7 +39,6 @@ for index, row in dataframe.iterrows():
     newDataframe = newDataframe.append({'text': summary, 'category': category}, ignore_index=True, sort=False)
 
 newDataframe.to_csv('summarize-texts.csv', sep='\t')
-
 
 
 
