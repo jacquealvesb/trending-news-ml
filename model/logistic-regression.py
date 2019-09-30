@@ -3,10 +3,10 @@ from sklearn.model_selection import train_test_split
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.linear_model import LogisticRegression
 
-df = pandas.read_csv('pre-processed-title-dataset.csv', sep='\t')
+df = pandas.read_csv('pre-processed-text-dataset.csv', sep='\t')
 df.head()
 
-sentences = df['title'].values
+sentences = df['text'].values.astype('U')
 y = df['category'].values
 
 sentences_train, sentences_test, y_train, y_test = train_test_split(sentences, y, test_size=0.2, shuffle=True) # splitting test and train data
