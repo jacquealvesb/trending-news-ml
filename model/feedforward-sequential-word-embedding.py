@@ -11,7 +11,7 @@ import numpy as np
 from nltk.corpus import stopwords
 import re 
 
-df = pandas.read_csv('sentences-summarize.csv', sep='\t')
+df = pandas.read_csv('summarize-texts.csv', sep='\t')
 df.head()
 
 encoder = LabelEncoder()
