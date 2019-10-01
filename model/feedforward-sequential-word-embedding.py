@@ -3,6 +3,8 @@ from sklearn.model_selection import train_test_split
 from keras.preprocessing.text import Tokenizer
 from keras.preprocessing.sequence import pad_sequences
 from keras.models import Sequential
+from keras.wrappers.scikit_learn import KerasClassifier
+from sklearn.model_selection import RandomizedSearchCV
 from sklearn.preprocessing import LabelEncoder
 from keras import layers
 from sklearn.utils import shuffle
@@ -11,7 +13,17 @@ import numpy as np
 from nltk.corpus import stopwords
 import re 
 
-df = pandas.read_csv('sentences-summarize.csv', sep='\t')
+def create_model(num_filters,kernel_size,vocab_size,embedding_dim, maxlen):  
+    model = Sequential()
+    model.add(layers.Embedding(input_dim = vocab_size, output_dim = embedding_dim, input_length = maxlen))
+    model.add(layers.Conv1D(num_filters,kernel_size, activation='relu'))
+    model.add(layers.GlobalMaxPool1D())
+    model.add(layers.Dense(10, activation = 'relu')) # add a hidden layer 
+    model.add(layers.Dense(1,activation='sigmoid')) # add output layer 
+    model.compile(loss='binary_crossentropy',optimizer='adam',metrics=['accuracy'])
+    return model
+    
+df = pandas.read_csv('summarize-texts.csv', sep='\t')
 df.head()
 
 encoder = LabelEncoder()
@@ -78,47 +90,61 @@ x_test = np.array(x_test)
 y_test = np.array(y_test)
 
 embedding_dim = ceil(maxlen/2)
-model = Sequential()
-model.add(layers.Embedding(input_dim = vocab_size, output_dim = embedding_dim, input_length = maxlen))
-model.add(layers.GlobalMaxPool1D())
-model.add(layers.Dense(10, activation = 'relu')) # add a hidden layer 
-model.add(layers.Dense(1,activation='sigmoid')) # add output layer 
-model.compile(loss='binary_crossentropy',optimizer='adam',metrics=['accuracy'])
-model.summary()
+param_grid = dict(num_filters = [32, 64, 128], kernel_size = [3, 5, 7], vocab_size = [vocab_size], embedding_dim = [embedding_dim], maxlen = [maxlen])
+epochs = 20
+model = KerasClassifier(build_fn = create_model, epochs = epochs, batch_size = 10, verbose = False)
+grid = RandomizedSearchCV(estimator = model, param_distributions = param_grid, cv = 4, verbose = 1, n_iter = 5)
+grid_result = grid.fit(x_train, y_train)
 
-history = model.fit(x_train, y_train,
-                    epochs=20,
-                    verbose=False,
-                    validation_data=(x_test, y_test),
-                    batch_size=10)
-loss, accuracy = model.evaluate(x_train, y_train, verbose = False)
-print("Training Accuracy: {:.4f}".format(accuracy))
-loss, accuracy = model.evaluate(x_test, y_test, verbose=False)
-print("Testing Accuracy:  {:.4f}".format(accuracy))
+test_accuracy = grid.score(x_test, y_test)
 
-##### graph
-import matplotlib.pyplot as plt
-plt.style.use('ggplot')
+# Save and evaluate results
+# prompt = input(f'finished {source}; write to file and proceed? [y/n]')
+# if prompt.lower() not in {'y', 'true', 'yes'}:
+#     break
+with open(output_file, 'a') as f:
+    s = ('Running {} data set\nBest Accuracy : '
+            '{:.4f}\n{}\nTest Accuracy : {:.4f}\n\n')
+    output_string = s.format(
+        grid_result.best_score_,
+        grid_result.best_params_,
+        test_accuracy)
+    print(output_string)
+    f.write(output_string)
 
-def plot_history(history):
-    acc = history.history['acc']
-    val_acc = history.history['val_acc']
-    loss = history.history['loss']
-    val_loss = history.history['val_loss']
-    x = range(1, len(acc) + 1)
+# history = model.fit(x_train, y_train,
+#                     epochs=20,
+#                     verbose=False,
+#                     validation_data=(x_test, y_test),
+#                     batch_size=10)
+# loss, accuracy = model.evaluate(x_train, y_train, verbose = False)
+# print("Training Accuracy: {:.4f}".format(accuracy))
+# loss, accuracy = model.evaluate(x_test, y_test, verbose=False)
+# print("Testing Accuracy:  {:.4f}".format(accuracy))
 
-    plt.figure(figsize=(12, 5))
-    plt.subplot(1, 2, 1)
-    plt.plot(x, acc, 'b', label='Training acc')
-    plt.plot(x, val_acc, 'r', label='Validation acc')
-    plt.title('Training and validation accuracy')
-    plt.legend()
-    plt.subplot(1, 2, 2)
-    plt.plot(x, loss, 'b', label='Training loss')
-    plt.plot(x, val_loss, 'r', label='Validation loss')
-    plt.title('Training and validation loss')
-    plt.legend()
+# ##### graph
+# import matplotlib.pyplot as plt
+# plt.style.use('ggplot')
 
-    plt.savefig('graph.png')
+# def plot_history(history):
+#     acc = history.history['acc']
+#     val_acc = history.history['val_acc']
+#     loss = history.history['loss']
+#     val_loss = history.history['val_loss']
+#     x = range(1, len(acc) + 1)
 
-plot_history(history)
+#     plt.figure(figsize=(12, 5))
+#     plt.subplot(1, 2, 1)
+#     plt.plot(x, acc, 'b', label='Training acc')
+#     plt.plot(x, val_acc, 'r', label='Validation acc')
+#     plt.title('Training and validation accuracy')
+#     plt.legend()
+#     plt.subplot(1, 2, 2)
+#     plt.plot(x, loss, 'b', label='Training loss')
+#     plt.plot(x, val_loss, 'r', label='Validation loss')
+#     plt.title('Training and validation loss')
+#     plt.legend()
+
+#     plt.savefig('graph.png')
+
+# plot_history(history)
