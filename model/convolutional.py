@@ -99,11 +99,12 @@ grid_result = grid.fit(x_train, y_train)
 test_accuracy = grid.score(x_test, y_test)
 
 # Save and evaluate results
+output_file = 'data/output.txt'
 # prompt = input(f'finished {source}; write to file and proceed? [y/n]')
 # if prompt.lower() not in {'y', 'true', 'yes'}:
 #     break
 with open(output_file, 'a') as f:
-    s = ('Running {} data set\nBest Accuracy : '
+    s = ('Best Accuracy : '
             '{:.4f}\n{}\nTest Accuracy : {:.4f}\n\n')
     output_string = s.format(
         grid_result.best_score_,
