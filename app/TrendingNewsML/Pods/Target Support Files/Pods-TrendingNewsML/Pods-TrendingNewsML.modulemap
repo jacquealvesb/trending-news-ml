@@ -1,6 +1,0 @@
-framework module Pods_TrendingNewsML {
-  umbrella header "Pods-TrendingNewsML-umbrella.h"
-
-  export *
-  module * { export * }
-}
