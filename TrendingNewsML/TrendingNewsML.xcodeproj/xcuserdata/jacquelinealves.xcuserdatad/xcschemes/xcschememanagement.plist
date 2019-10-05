@@ -4,11 +4,6 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>TrendingNewsML.xcscheme_^#shared#^_</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>2</integer>
-		</dict>
 		<key>TrendingNewsMLUnitTests.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
