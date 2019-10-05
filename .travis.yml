@@ -1,5 +1,4 @@
-language: objective-c  
+os: osx
 osx_image: xcode11
-xcode_workspace: TrendingNewsML.xcworkspace
-xcode_scheme: TrendingNewsML 
-xcode_destination: platform=iOS Simulator
+language: swift
+script: xcodebuild clean build test -workspace TrendingNewsML/TrendingNewsML.xcworkspace -scheme "TrendingNewsML" -sdk iphonesimulator -destination "platform=iOS Simulator,OS=13.0,name=iPhone 11" ONLY_ACTIVE_ARCH=NO CODE_SIGNING_REQUIRED=NO
