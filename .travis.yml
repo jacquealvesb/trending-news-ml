@@ -1,5 +1,5 @@
 language: objective-c  
-osx_image: xcode11.0 
+osx_image: xcode11
 xcode_workspace: TrendingNewsML.xcworkspace
 xcode_scheme: TrendingNewsML 
-xcode_sdk: iphonesimulator13.0
+xcode_destination: platform=iOS Simulator
