@@ -13,8 +13,19 @@
 		171AC3E22346171D00411912 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 171AC3E12346171D00411912 /* Assets.xcassets */; };
 		171AC3E52346171D00411912 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 171AC3E42346171D00411912 /* Preview Assets.xcassets */; };
 		171AC3E82346171D00411912 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 171AC3E62346171D00411912 /* LaunchScreen.storyboard */; };
+		178F53862348E580009BAAB6 /* TrendingNewsMLUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178F53852348E580009BAAB6 /* TrendingNewsMLUnitTests.swift */; };
 		7AE0A61B42625EA99B6B3831 /* Pods_TrendingNewsML.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48793B16319D5022FECFDDAA /* Pods_TrendingNewsML.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		178F53882348E580009BAAB6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 171AC3D02346171C00411912 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 171AC3D72346171C00411912;
+			remoteInfo = TrendingNewsML;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		16D30E783482F074A48981B3 /* Pods-TrendingNewsML.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TrendingNewsML.debug.xcconfig"; path = "Target Support Files/Pods-TrendingNewsML/Pods-TrendingNewsML.debug.xcconfig"; sourceTree = "<group>"; };
@@ -26,6 +37,9 @@
 		171AC3E42346171D00411912 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		171AC3E72346171D00411912 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		171AC3E92346171D00411912 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		178F53832348E580009BAAB6 /* TrendingNewsMLUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TrendingNewsMLUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		178F53852348E580009BAAB6 /* TrendingNewsMLUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingNewsMLUnitTests.swift; sourceTree = "<group>"; };
+		178F53872348E580009BAAB6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		48793B16319D5022FECFDDAA /* Pods_TrendingNewsML.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TrendingNewsML.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD458FA815F4F7AF0FAD8C00 /* Pods-TrendingNewsML.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TrendingNewsML.release.xcconfig"; path = "Target Support Files/Pods-TrendingNewsML/Pods-TrendingNewsML.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -39,6 +53,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		178F53802348E580009BAAB6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -46,6 +67,7 @@
 			isa = PBXGroup;
 			children = (
 				171AC3DA2346171C00411912 /* TrendingNewsML */,
+				178F53842348E580009BAAB6 /* TrendingNewsMLUnitTests */,
 				171AC3D92346171C00411912 /* Products */,
 				4AA94EA59FF9D45C2166F6C0 /* Pods */,
 				62FB87EA3EAFEFE2DF400857 /* Frameworks */,
@@ -56,6 +78,7 @@
 			isa = PBXGroup;
 			children = (
 				171AC3D82346171C00411912 /* TrendingNewsML.app */,
+				178F53832348E580009BAAB6 /* TrendingNewsMLUnitTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -80,6 +103,15 @@
 				171AC3E42346171D00411912 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		178F53842348E580009BAAB6 /* TrendingNewsMLUnitTests */ = {
+			isa = PBXGroup;
+			children = (
+				178F53852348E580009BAAB6 /* TrendingNewsMLUnitTests.swift */,
+				178F53872348E580009BAAB6 /* Info.plist */,
+			);
+			path = TrendingNewsMLUnitTests;
 			sourceTree = "<group>";
 		};
 		4AA94EA59FF9D45C2166F6C0 /* Pods */ = {
@@ -121,6 +153,24 @@
 			productReference = 171AC3D82346171C00411912 /* TrendingNewsML.app */;
 			productType = "com.apple.product-type.application";
 		};
+		178F53822348E580009BAAB6 /* TrendingNewsMLUnitTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 178F538C2348E580009BAAB6 /* Build configuration list for PBXNativeTarget "TrendingNewsMLUnitTests" */;
+			buildPhases = (
+				178F537F2348E580009BAAB6 /* Sources */,
+				178F53802348E580009BAAB6 /* Frameworks */,
+				178F53812348E580009BAAB6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				178F53892348E580009BAAB6 /* PBXTargetDependency */,
+			);
+			name = TrendingNewsMLUnitTests;
+			productName = TrendingNewsMLUnitTests;
+			productReference = 178F53832348E580009BAAB6 /* TrendingNewsMLUnitTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -133,6 +183,10 @@
 				TargetAttributes = {
 					171AC3D72346171C00411912 = {
 						CreatedOnToolsVersion = 11.0;
+					};
+					178F53822348E580009BAAB6 = {
+						CreatedOnToolsVersion = 11.0;
+						TestTargetID = 171AC3D72346171C00411912;
 					};
 				};
 			};
@@ -150,6 +204,7 @@
 			projectRoot = "";
 			targets = (
 				171AC3D72346171C00411912 /* TrendingNewsML */,
+				178F53822348E580009BAAB6 /* TrendingNewsMLUnitTests */,
 			);
 		};
 /* End PBXProject section */
@@ -162,6 +217,13 @@
 				171AC3E82346171D00411912 /* LaunchScreen.storyboard in Resources */,
 				171AC3E52346171D00411912 /* Preview Assets.xcassets in Resources */,
 				171AC3E22346171D00411912 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		178F53812348E580009BAAB6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -221,7 +283,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		178F537F2348E580009BAAB6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				178F53862348E580009BAAB6 /* TrendingNewsMLUnitTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		178F53892348E580009BAAB6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 171AC3D72346171C00411912 /* TrendingNewsML */;
+			targetProxy = 178F53882348E580009BAAB6 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		171AC3E62346171D00411912 /* LaunchScreen.storyboard */ = {
@@ -391,6 +469,46 @@
 			};
 			name = Release;
 		};
+		178F538A2348E580009BAAB6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 9554U789HP;
+				INFOPLIST_FILE = TrendingNewsMLUnitTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = maqueline.TrendingNewsMLUnitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TrendingNewsML.app/TrendingNewsML";
+			};
+			name = Debug;
+		};
+		178F538B2348E580009BAAB6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 9554U789HP;
+				INFOPLIST_FILE = TrendingNewsMLUnitTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = maqueline.TrendingNewsMLUnitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TrendingNewsML.app/TrendingNewsML";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -408,6 +526,15 @@
 			buildConfigurations = (
 				171AC3ED2346171D00411912 /* Debug */,
 				171AC3EE2346171D00411912 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		178F538C2348E580009BAAB6 /* Build configuration list for PBXNativeTarget "TrendingNewsMLUnitTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				178F538A2348E580009BAAB6 /* Debug */,
+				178F538B2348E580009BAAB6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
