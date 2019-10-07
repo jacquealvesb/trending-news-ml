@@ -14,31 +14,35 @@ struct ContentView: View {
     
     var body: some View {
         NavigationView {
-            List {
-                Section(header: SectionHeader(title: "Analisar")) {
-                    AnalyseTextField(textToAnalyse: $textToAnalyse)
-                    HStack(alignment: .center) {
-                        Spacer()
-                        Button(action: analyseButtonAction) {
-                            Text("Analisar")
-                                .padding(.vertical, 5)
-                                .padding(.horizontal, 20)
-                                .foregroundColor(Color.white)
-                                .background(Color.blue)
-                                .cornerRadius(8)
-                                
-                        }.onTapGesture(perform: analyse)
-                        Spacer()
+            ScrollView {
+                VStack(alignment: .leading) {
+                    Section(header: SectionHeader(title: "Analisar")) {
+                        AnalyseTextField(textToAnalyse: $textToAnalyse)
+                        HStack(alignment: .center) {
+                            Spacer()
+                            Button(action: analyseButtonAction) {
+                                Text("Analisar")
+                                    .padding(.vertical, 5)
+                                    .padding(.horizontal, 20)
+                                    .foregroundColor(Color.white)
+                                    .background(Color.blue)
+                                    .cornerRadius(8)
+                                    
+                            }.onTapGesture(perform: analyse)
+                            Spacer()
+                        }
                     }
-                }
+                    .padding(.horizontal)
 
-                Section(header: SectionHeader(title: "Categorias")) {
-                    CategoriesList(selectedCategory: $selectedCategory)
+                    Section(header: SectionHeader(title: "Categorias")) {
+                        CategoriesList(selectedCategory: $selectedCategory)
+                    }
+                    .padding(.horizontal)
                 }
             }
             .navigationBarTitle("Notícias")
-            .padding(.top)
             .listStyle(GroupedListStyle())
+            .padding(.top)
             .onAppear {
                 UITableView.appearance().separatorColor = .clear
                 UITableView.appearance().backgroundColor = .clear

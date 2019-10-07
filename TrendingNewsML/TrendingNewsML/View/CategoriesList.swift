@@ -14,12 +14,16 @@ struct CategoriesList: View {
     let rows: [[Category]] = [[.business, .entertainment],
                               [.health, .science],
                               [.sports, .technology]]
+    let columns: [[Category]] = [[.business, .health, .sports],
+                                 [.entertainment, .science, .technology]]
     
     var body: some View {
         ForEach(rows, id: \.self) { row in
             HStack {
                 ForEach(row, id: \.self) { category in
-                    CategoryView(category: category, selected: (self.selectedCategory == nil || self.selectedCategory == category))
+                    NavigationLink(destination: CategoryTrends(category: category)) {
+                        CategoryView(category: category, selected: (self.selectedCategory == nil || self.selectedCategory == category))
+                    }.buttonStyle(PlainButtonStyle())
                 }
             }
         }
