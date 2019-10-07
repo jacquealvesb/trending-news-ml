@@ -17,17 +17,18 @@ struct ContentView: View {
                 Section(header: SectionHeader(title: "Analisar")) {
                     TextField("Text to analise", text: $textToAnalise)
                 }
-                
+
                 Section(header: SectionHeader(title: "Categorias")) {
-                    HStack {
-                        CategoryView(category: .business)
-                        CategoryView(category: .entertainment)
-                    }
-                    
+                    CategoriesList()
                 }
             }
             .navigationBarTitle("Notícias")
+            .padding(.top)
             .listStyle(GroupedListStyle())
+            .onAppear {
+                UITableView.appearance().separatorColor = .clear
+                UITableView.appearance().backgroundColor = .clear
+            }
         }
     }
 }
