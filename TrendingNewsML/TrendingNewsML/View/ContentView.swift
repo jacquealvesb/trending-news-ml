@@ -20,15 +20,7 @@ struct ContentView: View {
                         AnalyseTextField(textToAnalyse: $textToAnalyse)
                         HStack(alignment: .center) {
                             Spacer()
-                            Button(action: analyseButtonAction) {
-                                Text("Analisar")
-                                    .padding(.vertical, 5)
-                                    .padding(.horizontal, 20)
-                                    .foregroundColor(Color.white)
-                                    .background(Color.blue)
-                                    .cornerRadius(8)
-                                    
-                            }.onTapGesture(perform: analyse)
+                            AnalyseButton()
                             Spacer()
                         }
                     }
@@ -48,14 +40,6 @@ struct ContentView: View {
                 UITableView.appearance().backgroundColor = .clear
             }
         }
-    }
-    
-    func analyse() {
-        print("analisar")
-    }
-    
-    func analyseButtonAction() {
-        print("Make haptic and sound feedback")
     }
 }
 
