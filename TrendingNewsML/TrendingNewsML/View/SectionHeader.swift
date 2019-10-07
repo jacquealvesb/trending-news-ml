@@ -14,7 +14,6 @@ struct SectionHeader: View {
     var body: some View {
         Text(title)
             .font(.headline)
-            .foregroundColor(Color.black)
     }
 }
 

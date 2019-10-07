@@ -14,7 +14,7 @@ struct AnalyseTextField: View {
     var body: some View {
         ZStack {
             Rectangle()
-                .fill(Color.white)
+                .fill(Color(UIColor.tertiarySystemBackground))
                 .cornerRadius(20)
                 .shadow(color: Color.black.opacity(0.2), radius: 8, x: 0, y: 2)
                 .padding(.bottom, 10)

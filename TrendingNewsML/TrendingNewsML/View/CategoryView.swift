@@ -9,12 +9,12 @@
 import SwiftUI
 
 struct CategoryView: View {
-    static let colors: [Category: Color] = [.business: Color.blue,
-                                            .entertainment: Color.pink,
-                                            .health: Color.red,
-                                            .science: Color.green,
-                                            .sports: Color.orange,
-                                            .technology: Color.purple]
+    static let colors: [Category: Color] = [.business: Color.Pastel.blue,
+                                            .entertainment: Color.Pastel.pink,
+                                            .health: Color.Pastel.red,
+                                            .science: Color.Pastel.green,
+                                            .sports: Color.Pastel.orange,
+                                            .technology: Color.Pastel.purple]
     static let icons: [Category: String] = [.business: "briefcase.fill",
                                            .entertainment: "tv",
                                            .health: "heart.fill",
