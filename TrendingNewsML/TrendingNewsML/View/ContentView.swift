@@ -10,6 +10,7 @@ import SwiftUI
 
 struct ContentView: View {
     @State private var textToAnalyse: String = ""
+    @State private var selectedCategory: Category?
     
     var body: some View {
         NavigationView {
@@ -32,7 +33,7 @@ struct ContentView: View {
                 }
 
                 Section(header: SectionHeader(title: "Categorias")) {
-                    CategoriesList()
+                    CategoriesList(selectedCategory: $selectedCategory)
                 }
             }
             .navigationBarTitle("Notícias")

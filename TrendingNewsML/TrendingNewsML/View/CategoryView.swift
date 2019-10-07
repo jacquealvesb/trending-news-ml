@@ -23,6 +23,7 @@ struct CategoryView: View {
                                            .technology: "globe"]
     
     let category: Category
+    let selected: Bool
     
     var body: some View {
         ZStack(alignment: .bottomLeading) {
@@ -43,11 +44,12 @@ struct CategoryView: View {
                     .font(.headline)
             }
         }
+        .opacity(selected ? 1 : 0.3)
     }
 }
 
 struct CategoryView_Previews: PreviewProvider {
     static var previews: some View {
-        CategoryView(category: .business)
+        CategoryView(category: .business, selected: true)
     }
 }

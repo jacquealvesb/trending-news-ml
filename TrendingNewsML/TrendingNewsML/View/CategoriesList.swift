@@ -9,6 +9,8 @@
 import SwiftUI
 
 struct CategoriesList: View {
+    @Binding var selectedCategory: Category?
+    
     let rows: [[Category]] = [[.business, .entertainment],
                               [.health, .science],
                               [.sports, .technology]]
@@ -17,7 +19,7 @@ struct CategoriesList: View {
         ForEach(rows, id: \.self) { row in
             HStack {
                 ForEach(row, id: \.self) { category in
-                    CategoryView(category: category)
+                    CategoryView(category: category, selected: (self.selectedCategory == nil || self.selectedCategory == category))
                 }
             }
         }
@@ -25,7 +27,9 @@ struct CategoriesList: View {
 }
 
 struct CategoriesList_Previews: PreviewProvider {
+    @State private static var selectedCategory: Category?
+    
     static var previews: some View {
-        CategoriesList()
+        CategoriesList(selectedCategory: CategoriesList_Previews.$selectedCategory)
     }
 }
