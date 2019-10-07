@@ -1,5 +1,5 @@
 //
-//  AnaliseTextField.swift
+//  AnalyseTextField.swift
 //  TrendingNewsML
 //
 //  Created by Jacqueline Alves on 07/10/19.
@@ -8,8 +8,8 @@
 
 import SwiftUI
 
-struct AnaliseTextField: View {
-    @Binding var textToAnalise: String
+struct AnalyseTextField: View {
+    @Binding var textToAnalyse: String
     
     var body: some View {
         ZStack {
@@ -22,17 +22,17 @@ struct AnaliseTextField: View {
                 Text("ANALISAR NOTÍCIA")
                     .font(.caption)
                     .foregroundColor(Color.gray)
-                TextField("Coloque o texto a ser analisado", text: $textToAnalise)
+                TextField("Coloque o texto a ser analisado", text: $textToAnalyse)
             }
             .padding()
         }
     }
 }
 
-struct AnaliseTextField_Previews: PreviewProvider {
-    @State private static var textToAnalise: String = ""
+struct AnalyseTextField_Previews: PreviewProvider {
+    @State private static var textToAnalyse: String = ""
     
     static var previews: some View {
-        AnaliseTextField(textToAnalise: AnaliseTextField_Previews.$textToAnalise)
+        AnalyseTextField(textToAnalyse: AnalyseTextField_Previews.$textToAnalyse)
     }
 }

@@ -9,13 +9,13 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var textToAnalise: String = ""
+    @State private var textToAnalyse: String = ""
     
     var body: some View {
         NavigationView {
             List {
                 Section(header: SectionHeader(title: "Analisar")) {
-                    AnaliseTextField(textToAnalise: $textToAnalise)
+                    AnalyseTextField(textToAnalyse: $textToAnalyse)
                     HStack(alignment: .center) {
                         Spacer()
                         Button(action: analyseButtonAction) {
