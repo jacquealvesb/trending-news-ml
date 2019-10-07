@@ -15,7 +15,20 @@ struct ContentView: View {
         NavigationView {
             List {
                 Section(header: SectionHeader(title: "Analisar")) {
-                    TextField("Text to analise", text: $textToAnalise)
+                    AnaliseTextField(textToAnalise: $textToAnalise)
+                    HStack(alignment: .center) {
+                        Spacer()
+                        Button(action: analyseButtonAction) {
+                            Text("Analisar")
+                                .padding(.vertical, 5)
+                                .padding(.horizontal, 20)
+                                .foregroundColor(Color.white)
+                                .background(Color.blue)
+                                .cornerRadius(8)
+                                
+                        }.onTapGesture(perform: analyse)
+                        Spacer()
+                    }
                 }
 
                 Section(header: SectionHeader(title: "Categorias")) {
@@ -30,6 +43,14 @@ struct ContentView: View {
                 UITableView.appearance().backgroundColor = .clear
             }
         }
+    }
+    
+    func analyse() {
+        print("analisar")
+    }
+    
+    func analyseButtonAction() {
+        print("Make haptic and sound feedback")
     }
 }
 
