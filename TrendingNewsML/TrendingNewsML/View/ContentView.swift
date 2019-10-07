@@ -19,7 +19,11 @@ struct ContentView: View {
                 }
                 
                 Section(header: SectionHeader(title: "Categorias")) {
-                    Text("categorias")
+                    HStack {
+                        CategoryView(category: .business)
+                        CategoryView(category: .entertainment)
+                    }
+                    
                 }
             }
             .navigationBarTitle("Notícias")
