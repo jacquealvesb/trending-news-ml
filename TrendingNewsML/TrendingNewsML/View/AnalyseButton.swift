@@ -19,6 +19,7 @@ struct AnalyseButton: View {
                 .cornerRadius(8)
                 
         }
+        .padding(.bottom, 30)
     }
     
     func analyse() {

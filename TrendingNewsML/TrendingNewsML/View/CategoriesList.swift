@@ -18,15 +18,18 @@ struct CategoriesList: View {
                                  [.entertainment, .science, .technology]]
     
     var body: some View {
-        ForEach(rows, id: \.self) { row in
-            HStack {
-                ForEach(row, id: \.self) { category in
-                    NavigationLink(destination: CategoryTrends(category: category)) {
-                        CategoryView(category: category, selected: (self.selectedCategory == nil || self.selectedCategory == category))
-                    }.buttonStyle(PlainButtonStyle())
+        VStack {
+            ForEach(rows, id: \.self) { row in
+                HStack {
+                    ForEach(row, id: \.self) { category in
+                        NavigationLink(destination: CategoryTrends(category: category)) {
+                            CategoryView(category: category, selected: (self.selectedCategory == nil || self.selectedCategory == category))
+                        }.buttonStyle(PlainButtonStyle())
+                    }
                 }
             }
         }
+        .padding(.bottom, 30)
     }
 }
 

@@ -20,6 +20,10 @@ struct CategoryTrends: View {
             }
         }
         .navigationBarTitle(Text(category.rawValue), displayMode: .inline)
+        .onAppear {
+            UITableView.appearance().separatorColor = .clear
+            UITableView.appearance().backgroundColor = .clear
+        }
     }
 }
 

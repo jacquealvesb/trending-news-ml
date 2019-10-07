@@ -29,7 +29,7 @@ struct CategoryView: View {
         ZStack(alignment: .bottomLeading) {
             Rectangle()
                 .fill(Self.colors[category, default: .black])
-                .frame(height: 120)
+                .frame(height: 100)
                 .cornerRadius(20)
             VStack(alignment: .leading) {
                 Image(systemName: Self.icons[category, default: "questionmarl.circle"])

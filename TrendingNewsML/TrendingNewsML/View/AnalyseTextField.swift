@@ -12,7 +12,7 @@ struct AnalyseTextField: View {
     @Binding var textToAnalyse: String
     
     var body: some View {
-        ZStack {
+        ZStack(alignment: .topLeading) {
             Rectangle()
                 .fill(Color(UIColor.tertiarySystemBackground))
                 .cornerRadius(20)
@@ -23,9 +23,11 @@ struct AnalyseTextField: View {
                     .font(.caption)
                     .foregroundColor(Color.gray)
                 TextField("Coloque o texto a ser analisado", text: $textToAnalyse)
+                    .padding(.vertical, 5)
             }
             .padding()
         }
+        .padding(.bottom)
     }
 }
 
