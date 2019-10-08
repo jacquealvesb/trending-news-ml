@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct CategoryTrends: View {
-    @State private var trendingWords: [String] = ["Oi", "Tudo", "Bem", "Com"]
+    @State private var trendingWords: [String] = ["Oi", "Tudo", "Bem", "Com", "Você"]
     
     let category: Category
     
