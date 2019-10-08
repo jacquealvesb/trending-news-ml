@@ -9,14 +9,19 @@
 import Foundation
 import CoreML
 
-class InputProcessor {
-    var vocabulary = [String:Int]()
+class TextInputProcessor {
+    var vocabulary = [String: Int]()
+    static let shared = TextInputProcessor()
+    
+    init() {
+        loadVocabulary()
+    }
     
     func loadVocabulary() {
-        let path = Bundle.main.url(forResource:"words_array", withExtension:"json")
+        let path = Bundle.main.url(forResource: "words_array", withExtension: "json")
         do {
             let wordsData = try Data(contentsOf: path!)
-            if let wordsDict = try JSONSerialization.jsonObject(with: wordsData, options: []) as? [String:Int] {
+            if let wordsDict = try JSONSerialization.jsonObject(with: wordsData, options: []) as? [String: Int] {
                 self.vocabulary = wordsDict
                 print(self.vocabulary.count)
             }
@@ -25,21 +30,21 @@ class InputProcessor {
         }
     }
     
-    func makeMLMultiarray(from text: String) -> MLMultiArray {
+    func makeMLMultiarray(from text: String) -> MLMultiArray? {
         let vector = countVectorizer(sentence: text)
-        let mlmultiarray = try! MLMultiArray(shape: [NSNumber(integerLiteral: self.vocabulary.count)], dataType: .int32)
+        let mlmultiarray = try? MLMultiArray(shape: [NSNumber(integerLiteral: self.vocabulary.count)], dataType: .int32)
         for (key, value) in vector! {
-            mlmultiarray[key] = NSNumber(value: value)
+            mlmultiarray?[key] = NSNumber(value: value)
         }
         return mlmultiarray
     }
     
-    func countVectorizer(sentence: String) -> [Int:Int]? {
-        var vector = [Int:Int]()
+    func countVectorizer(sentence: String) -> [Int: Int]? {
+        var vector = [Int: Int]()
         for word in self.tokenizer(sentence) {
             if let position = self.vocabulary[word] {
-                if let i = vector[position] {
-                    vector[position] = i + 1
+                if let index = vector[position] {
+                    vector[position] = index + 1
                 } else {
                     vector[position] = 1
                 }
