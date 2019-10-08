@@ -53,7 +53,33 @@ class TrendingNewsMLUITests: XCTestCase {
         let categoryButton = app.scrollViews.otherElements.buttons[category]
         
         let size: CGSize = (categoryButton.label as NSString).size(
-            withAttributes: [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .headline)]
+            withAttributes: [
+                NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .subheadline)
+            ]
+            
+        )
+        let padding: CGFloat = 10
+        
+        XCTAssertLessThanOrEqual(size.width + (2 * padding), categoryButton.frame.width)
+    }
+    
+    func testCategoriesButtonsLabelAcessibility() {
+        let app = XCUIApplication()
+        app.launch()
+        
+        let category = "Entretenimento"
+        let categoryButton = app.scrollViews.otherElements.buttons[category]
+        
+        let size: CGSize = (categoryButton.label as NSString).size(
+            withAttributes: [
+                NSAttributedString.Key.font:
+                    UIFont.preferredFont(forTextStyle: .subheadline,
+                                        compatibleWith: UITraitCollection.init(
+                                            preferredContentSizeCategory: UIContentSizeCategory.accessibilityExtraExtraExtraLarge
+                                        )
+                    )
+            ]
+            
         )
         let padding: CGFloat = 10
         

@@ -41,7 +41,7 @@ struct CategoryView: View {
                 Text(category.rawValue)
                     .padding(10)
                     .foregroundColor(Color.white)
-                    .font(.headline)
+                    .font(.subheadline)
             }
         }
         .opacity(selected ? 1 : 0.3)
