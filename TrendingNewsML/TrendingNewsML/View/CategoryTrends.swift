@@ -18,12 +18,9 @@ struct CategoryTrends: View {
             ForEach(trendingWords, id: \.self) { word in
                 TrendingWord(word: word, color: CategoryView.colors[self.category, default: .black])
             }
+            .listRowBackground(Color(UIColor.systemBackground))
         }
-        .navigationBarTitle(Text(category.rawValue), displayMode: .inline)
-        .onAppear {
-            UITableView.appearance().separatorColor = .clear
-            UITableView.appearance().backgroundColor = .clear
-        }
+        .navigationBarTitle(category.rawValue)
     }
 }
 
