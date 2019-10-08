@@ -25,11 +25,11 @@ struct CategoriesList: View {
                 Group {
                     if self.largerText.active {
                         VStack {
-                            CategoriesListCells(selectedCategory: self.$selectedCategory, categories: row)
+                            CategoriesListCell(selectedCategory: self.$selectedCategory, categories: row, largerTextIsActive: self.largerText.active)
                         }
                     } else {
                         HStack {
-                            CategoriesListCells(selectedCategory: self.$selectedCategory, categories: row)
+                            CategoriesListCell(selectedCategory: self.$selectedCategory, categories: row, largerTextIsActive: self.largerText.active)
                         }
                     }
                 }
@@ -45,15 +45,16 @@ struct CategoriesList: View {
     }
 }
 
-struct CategoriesListCells: View {
+struct CategoriesListCell: View {
     @Binding var selectedCategory: Category?
     
     let categories: [Category]
+    let largerTextIsActive: Bool
     
     var body: some View {
         ForEach(categories, id: \.self) { category in
             NavigationLink(destination: CategoryTrends(category: category)) {
-                CategoryView(category: category, selected: (self.selectedCategory == nil || self.selectedCategory == category))
+                CategoryView(category: category, selected: (self.selectedCategory == nil || self.selectedCategory == category), largerTextIsActive: self.largerTextIsActive)
             }.buttonStyle(PlainButtonStyle())
         }
     }

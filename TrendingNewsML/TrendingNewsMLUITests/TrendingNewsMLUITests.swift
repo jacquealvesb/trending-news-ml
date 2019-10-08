@@ -75,7 +75,7 @@ class TrendingNewsMLUITests: XCTestCase {
                 NSAttributedString.Key.font:
                     UIFont.preferredFont(forTextStyle: .subheadline,
                                         compatibleWith: UITraitCollection.init(
-                                            preferredContentSizeCategory: UIContentSizeCategory.accessibilityExtraExtraExtraLarge
+                                            preferredContentSizeCategory: UIContentSizeCategory.accessibilityExtraLarge
                                         )
                     )
             ]

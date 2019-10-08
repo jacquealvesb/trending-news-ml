@@ -24,24 +24,24 @@ struct CategoryView: View {
     
     let category: Category
     let selected: Bool
+    let largerTextIsActive: Bool
     
     var body: some View {
         ZStack(alignment: .bottomLeading) {
             Rectangle()
                 .fill(Self.colors[category, default: .black])
-                .frame(height: 100)
                 .cornerRadius(20)
             VStack(alignment: .leading) {
                 Image(systemName: Self.icons[category, default: "questionmarl.circle"])
                     .padding(.vertical, 15)
                     .padding(.horizontal, 10)
                     .foregroundColor(Color.white)
-                    .font(.headline)
+                    .font(self.largerTextIsActive ? .caption : .headline)
                 Spacer()
                 Text(category.rawValue)
                     .padding(10)
                     .foregroundColor(Color.white)
-                    .font(.subheadline)
+                    .font(self.largerTextIsActive ? .caption : .subheadline)
             }
         }
         .opacity(selected ? 1 : 0.3)
@@ -50,6 +50,6 @@ struct CategoryView: View {
 
 struct CategoryView_Previews: PreviewProvider {
     static var previews: some View {
-        CategoryView(category: .business, selected: true)
+        CategoryView(category: .business, selected: true, largerTextIsActive: false)
     }
 }
