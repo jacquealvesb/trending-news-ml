@@ -27,7 +27,7 @@ struct ContentView: View {
                     .padding(.horizontal)
 
                     Section(header: SectionHeader(title: "Categorias")) {
-                        CategoriesList(selectedCategory: $selectedCategory)
+                        CategoriesList(selectedCategory: $selectedCategory, largerText: LargerText())
                     }
                     .padding(.horizontal)
                 }
