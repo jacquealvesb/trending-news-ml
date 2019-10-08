@@ -10,6 +10,7 @@ import SwiftUI
 
 struct AnalyseTextField: View {
     @Binding var textToAnalyse: String
+    @ObservedObject var largerText: LargerText
     
     var body: some View {
         ZStack(alignment: .topLeading) {
@@ -18,10 +19,10 @@ struct AnalyseTextField: View {
                 .cornerRadius(20)
                 .shadow(color: Color.black.opacity(0.2), radius: 8, x: 0, y: 2)
             VStack(alignment: .leading) {
-                Text("ANALISAR NOTÍCIA")
+                Text(self.largerText.active ? "ANALISAR\nNOTÍCIA" : "ANALISAR NOTÍCIA")
                     .font(.caption)
                     .foregroundColor(Color.gray)
-                TextField("Coloque o texto a ser analisado", text: $textToAnalyse)
+                TextField("Texto", text: $textToAnalyse)
                     .padding(.vertical, 5)
             }
             .padding()
@@ -34,6 +35,6 @@ struct AnalyseTextField_Previews: PreviewProvider {
     @State private static var textToAnalyse: String = ""
     
     static var previews: some View {
-        AnalyseTextField(textToAnalyse: AnalyseTextField_Previews.$textToAnalyse)
+        AnalyseTextField(textToAnalyse: AnalyseTextField_Previews.$textToAnalyse, largerText: LargerText())
     }
 }

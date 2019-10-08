@@ -12,12 +12,14 @@ struct ContentView: View {
     @State private var textToAnalyse: String = ""
     @State private var selectedCategory: Category?
     
+    let largerTextObserver = LargerText()
+    
     var body: some View {
         NavigationView {
             ScrollView {
                 VStack(alignment: .leading) {
                     Section(header: SectionHeader(title: "Analisar")) {
-                        AnalyseTextField(textToAnalyse: $textToAnalyse)
+                        AnalyseTextField(textToAnalyse: $textToAnalyse, largerText: largerTextObserver)
                         HStack(alignment: .center) {
                             Spacer()
                             AnalyseButton()
@@ -27,7 +29,7 @@ struct ContentView: View {
                     .padding(.horizontal)
 
                     Section(header: SectionHeader(title: "Categorias")) {
-                        CategoriesList(selectedCategory: $selectedCategory, largerText: LargerText())
+                        CategoriesList(selectedCategory: $selectedCategory, largerText: largerTextObserver)
                     }
                     .padding(.horizontal)
                 }

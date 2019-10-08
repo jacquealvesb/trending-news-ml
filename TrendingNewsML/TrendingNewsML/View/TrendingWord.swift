@@ -11,6 +11,7 @@ import SwiftUI
 struct TrendingWord: View {
     let word: String
     let color: Color
+    let largerTextIsActive: Bool
     
     var body: some View {
         ZStack(alignment: .bottomLeading) {
@@ -21,13 +22,13 @@ struct TrendingWord: View {
             Text(word)
                 .padding(10)
                 .foregroundColor(Color.white)
-                .font(.title)
+                .font(self.largerTextIsActive ? .caption : .title)
         }
     }
 }
 
 struct TendingWord_Previews: PreviewProvider {
     static var previews: some View {
-        TrendingWord(word: "Oi", color: .black)
+        TrendingWord(word: "Oi", color: .black, largerTextIsActive: false)
     }
 }

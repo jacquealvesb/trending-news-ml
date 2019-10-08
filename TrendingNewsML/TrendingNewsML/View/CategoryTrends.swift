@@ -12,11 +12,12 @@ struct CategoryTrends: View {
     @State private var trendingWords: [String] = ["Oi", "Tudo", "Bem", "Com", "Você"]
     
     let category: Category
+    let largerTextIsActive: Bool
     
     var body: some View {
         List {
             ForEach(trendingWords, id: \.self) { word in
-                TrendingWord(word: word, color: CategoryView.colors[self.category, default: .black])
+                TrendingWord(word: word, color: CategoryView.colors[self.category, default: .black], largerTextIsActive: self.largerTextIsActive)
             }
             .listRowBackground(Color(UIColor.systemBackground))
         }
@@ -26,6 +27,6 @@ struct CategoryTrends: View {
 
 struct CategoryTrends_Previews: PreviewProvider {
     static var previews: some View {
-        CategoryTrends(category: .business)
+        CategoryTrends(category: .business, largerTextIsActive: false)
     }
 }

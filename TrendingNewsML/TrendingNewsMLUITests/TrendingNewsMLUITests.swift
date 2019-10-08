@@ -31,9 +31,10 @@ class TrendingNewsMLUITests: XCTestCase {
     func testCategoriesButtons() {
         let app = XCUIApplication()
         app.launch()
-        
+                
         let category = "Entretenimento"
         let categoryButton = app.scrollViews.otherElements.buttons[category]
+        
         XCTAssertEqual(categoryButton.label, category)
         
         categoryButton.tap()
@@ -42,7 +43,6 @@ class TrendingNewsMLUITests: XCTestCase {
         
         let trendingWords = app.tables.firstMatch.cells
         XCTAssertEqual(trendingWords.count, 5)
-        
     }
     
     func testCategoriesButtonsLabelTruncates() {
@@ -54,7 +54,7 @@ class TrendingNewsMLUITests: XCTestCase {
         
         let size: CGSize = (categoryButton.label as NSString).size(
             withAttributes: [
-                NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .subheadline)
+                NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .caption2)
             ]
             
         )
@@ -84,5 +84,26 @@ class TrendingNewsMLUITests: XCTestCase {
         let padding: CGFloat = 10
         
         XCTAssertLessThanOrEqual(size.width + (2 * padding), categoryButton.frame.width)
+    }
+    
+    func testAnalyseTextLabelAcessibility() {
+        let app = XCUIApplication()
+        app.launch()
+        
+        let analyseTextLabel = app.scrollViews.otherElements.staticTexts["ANALISAR\nNOTÍCIA"]
+        
+        let size: CGSize = (analyseTextLabel.label as NSString).size(
+            withAttributes: [
+                NSAttributedString.Key.font:
+                    UIFont.preferredFont(forTextStyle: .subheadline,
+                                        compatibleWith: UITraitCollection.init(
+                                            preferredContentSizeCategory: UIContentSizeCategory.accessibilityExtraLarge
+                                        )
+                    )
+            ]
+            
+        )
+        
+        XCTAssertLessThanOrEqual(size.height, analyseTextLabel.frame.height)
     }
 }
