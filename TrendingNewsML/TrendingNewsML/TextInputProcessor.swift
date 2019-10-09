@@ -17,6 +17,8 @@ class TextInputProcessor {
         loadVocabulary()
     }
     
+    // Load vocabulary of the model from words_array.json file
+    // Vocabulary file needs to be created at the same time the model was trained
     func loadVocabulary() {
         let path = Bundle.main.url(forResource: "words_array", withExtension: "json")
         do {
@@ -30,6 +32,8 @@ class TextInputProcessor {
         }
     }
     
+    // Transform String into MLMultiArray.
+    // This is necessary to make a prediction for the MLModel, as it asks for an input parameter with MLMultiarray type.
     func makeMLMultiarray(from text: String) -> MLMultiArray? {
         let vector = countVectorizer(sentence: text)
         let mlmultiarray = try? MLMultiArray(shape: [NSNumber(integerLiteral: self.vocabulary.count)], dataType: .int32)
@@ -39,6 +43,9 @@ class TextInputProcessor {
         return mlmultiarray
     }
     
+    // Creates a dictionary to represent the sentence.
+    // Each keys is a number that represents a word of the vocabulary.
+    // The value is the number os times the word appeared in the sentence.
     func countVectorizer(sentence: String) -> [Int: Int]? {
         var vector = [Int: Int]()
         for word in self.tokenizer(sentence) {
@@ -53,6 +60,7 @@ class TextInputProcessor {
         return vector
     }
     
+    // Remove symbols and split the text into an array of words
     func tokenizer(_ text: String) -> [String] {
         let newText = text.lowercased().trimmingCharacters(in: CharacterSet(charactersIn: "!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~"))
         let tokens = newText.components(separatedBy: CharacterSet.whitespaces)
