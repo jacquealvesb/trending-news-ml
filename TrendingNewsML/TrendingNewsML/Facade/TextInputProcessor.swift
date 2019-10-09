@@ -10,8 +10,8 @@ import Foundation
 import CoreML
 
 class TextInputProcessor {
-    var vocabulary = [String: Int]()
     static let shared = TextInputProcessor()
+    var vocabulary = [String: Int]()
     
     init() {
         loadVocabulary()
