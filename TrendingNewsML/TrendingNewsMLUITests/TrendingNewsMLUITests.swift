@@ -34,15 +34,20 @@ class TrendingNewsMLUITests: XCTestCase {
                 
         let category = "Entretenimento"
         let categoryButton = app.scrollViews.otherElements.buttons[category]
+        let minTrendingWordsCount = 5
         
         XCTAssertEqual(categoryButton.label, category)
         
         categoryButton.tap()
         
         // The trending words in category view is showing
+        let trendingWords = app.tables.cells
+        XCTAssertGreaterThanOrEqual(trendingWords.count, minTrendingWordsCount + 1)
         
-        let trendingWords = app.tables.firstMatch.cells
-        XCTAssertEqual(trendingWords.count, 5)
+        let trendingCategoryTitle = app.tables.staticTexts[category]
+        let size = self.stringCGSize(trendingCategoryTitle.label, withTextStyle: .headline, andContentSizeCategory: .accessibilityExtraLarge)
+        
+        XCTAssertLessThanOrEqual(size.width, app.tables.firstMatch.frame.width)
     }
     
     func testCategoriesButtonsLabelTruncates() {
@@ -51,13 +56,7 @@ class TrendingNewsMLUITests: XCTestCase {
         
         let category = "Entretenimento"
         let categoryButton = app.scrollViews.otherElements.buttons[category]
-        
-        let size: CGSize = (categoryButton.label as NSString).size(
-            withAttributes: [
-                NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .caption2)
-            ]
-            
-        )
+        let size = self.stringCGSize(categoryButton.label, withTextStyle: .subheadline)
         let padding: CGFloat = 10
         
         XCTAssertLessThanOrEqual(size.width + (2 * padding), categoryButton.frame.width)
@@ -69,18 +68,7 @@ class TrendingNewsMLUITests: XCTestCase {
         
         let category = "Entretenimento"
         let categoryButton = app.scrollViews.otherElements.buttons[category]
-        
-        let size: CGSize = (categoryButton.label as NSString).size(
-            withAttributes: [
-                NSAttributedString.Key.font:
-                    UIFont.preferredFont(forTextStyle: .subheadline,
-                                        compatibleWith: UITraitCollection.init(
-                                            preferredContentSizeCategory: UIContentSizeCategory.accessibilityExtraLarge
-                                        )
-                    )
-            ]
-            
-        )
+        let size = self.stringCGSize(categoryButton.label, withTextStyle: .caption2, andContentSizeCategory: .accessibilityExtraLarge)
         let padding: CGFloat = 10
         
         XCTAssertLessThanOrEqual(size.width + (2 * padding), categoryButton.frame.width)
@@ -91,19 +79,38 @@ class TrendingNewsMLUITests: XCTestCase {
         app.launch()
         
         let analyseTextLabel = app.scrollViews.otherElements.staticTexts["ANALISAR\nNOTÍCIA"]
-        
-        let size: CGSize = (analyseTextLabel.label as NSString).size(
-            withAttributes: [
-                NSAttributedString.Key.font:
-                    UIFont.preferredFont(forTextStyle: .subheadline,
-                                        compatibleWith: UITraitCollection.init(
-                                            preferredContentSizeCategory: UIContentSizeCategory.accessibilityExtraLarge
-                                        )
-                    )
-            ]
-            
-        )
+        let words = analyseTextLabel.label.split(separator: "\n")
+        let longestWord = words.max(by: {$1.count > $0.count}) ?? ""
+        let size = self.stringCGSize(String(longestWord), withTextStyle: .subheadline, andContentSizeCategory: .accessibilityExtraLarge)
         
         XCTAssertLessThanOrEqual(size.height, analyseTextLabel.frame.height)
+    }
+}
+
+// MARK: - Support functions
+extension TrendingNewsMLUITests {
+    func stringCGSize(_ string: String, withTextStyle textStyle: UIFont.TextStyle, andContentSizeCategory contentSizeCategory: UIContentSizeCategory? = nil) -> CGSize {
+        var size: CGSize = CGSize.zero
+        
+        if let contentSizeCategory = contentSizeCategory {
+            size = (string as NSString).size(
+                withAttributes: [
+                    NSAttributedString.Key.font:
+                        UIFont.preferredFont(forTextStyle: textStyle,
+                                            compatibleWith: UITraitCollection.init(
+                                                preferredContentSizeCategory: contentSizeCategory
+                                            )
+                        )
+                ]
+            )
+        } else {
+            size = (string as NSString).size(
+                withAttributes: [
+                    NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: textStyle)
+                ]
+            )
+        }
+        
+        return size
     }
 }

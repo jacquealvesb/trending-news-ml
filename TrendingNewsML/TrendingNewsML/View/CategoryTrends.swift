@@ -16,12 +16,16 @@ struct CategoryTrends: View {
     
     var body: some View {
         List {
+            Text(category.rawValue)
+                .font(self.largerTextIsActive ? .headline : .largeTitle)
+                .fontWeight(.bold)
+            
             ForEach(trendingWords, id: \.self) { word in
                 TrendingWord(word: word, color: CategoryView.colors[self.category, default: .black], largerTextIsActive: self.largerTextIsActive)
             }
             .listRowBackground(Color(UIColor.systemBackground))
         }
-        .navigationBarTitle(category.rawValue)
+        .navigationBarTitle("Temas do momento", displayMode: .inline)
     }
 }
 
