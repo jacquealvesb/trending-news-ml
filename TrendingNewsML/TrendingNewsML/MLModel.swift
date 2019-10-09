@@ -12,6 +12,7 @@ import Foundation
 class MlModel {
     let model = BrNewsCategoryV3()
     
+    // Requests a prediction from the model with the news article text as a MLMultiarray
     func makePrediction(news: String) -> String {
         let mlarray = TextInputProcessor.shared.makeMLMultiarray(from: news)
         do {
@@ -20,7 +21,7 @@ class MlModel {
             return result.category
         } catch {
             print(error)
-            return "Deu pobrema"
+            return "Error: Prediction of the model couldn't be requested."
         }
     }
 }
