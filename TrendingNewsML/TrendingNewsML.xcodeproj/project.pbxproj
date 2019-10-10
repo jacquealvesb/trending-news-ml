@@ -21,6 +21,9 @@
 		17631A5F234CD08B00B8D62E /* LargerText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17631A5E234CD08B00B8D62E /* LargerText.swift */; };
 		176528B3234C13F40079523E /* TrendingNewsMLUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176528B2234C13F40079523E /* TrendingNewsMLUITests.swift */; };
 		178F53862348E580009BAAB6 /* TrendingNewsMLUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178F53852348E580009BAAB6 /* TrendingNewsMLUnitTests.swift */; };
+		179297BE234F69E40087758C /* GNews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179297BD234F69E40087758C /* GNews.swift */; };
+		179297C0234F69F80087758C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179297BF234F69F80087758C /* Constants.swift */; };
+		179297C2234F6BAF0087758C /* News.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179297C1234F6BAF0087758C /* News.swift */; };
 		17EB4920234B64C2005A7E7A /* SectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17EB491F234B64C2005A7E7A /* SectionHeader.swift */; };
 		17EB4924234B65B5005A7E7A /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17EB4923234B65B5005A7E7A /* Category.swift */; };
 		17EB4926234B669A005A7E7A /* CategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17EB4925234B669A005A7E7A /* CategoryView.swift */; };
@@ -71,6 +74,9 @@
 		178F53832348E580009BAAB6 /* TrendingNewsMLUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TrendingNewsMLUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		178F53852348E580009BAAB6 /* TrendingNewsMLUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingNewsMLUnitTests.swift; sourceTree = "<group>"; };
 		178F53872348E580009BAAB6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		179297BD234F69E40087758C /* GNews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GNews.swift; sourceTree = "<group>"; };
+		179297BF234F69F80087758C /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		179297C1234F6BAF0087758C /* News.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = News.swift; sourceTree = "<group>"; };
 		17EB491F234B64C2005A7E7A /* SectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeader.swift; sourceTree = "<group>"; };
 		17EB4923234B65B5005A7E7A /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		17EB4925234B669A005A7E7A /* CategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryView.swift; sourceTree = "<group>"; };
@@ -170,6 +176,7 @@
 			children = (
 				49AC0810234CDAE900DD8288 /* TextInputProcessor.swift */,
 				49AC0816234CE00400DD8288 /* MLModel.swift */,
+				179297BD234F69E40087758C /* GNews.swift */,
 			);
 			path = Facade;
 			sourceTree = "<group>";
@@ -213,6 +220,8 @@
 				17EB4923234B65B5005A7E7A /* Category.swift */,
 				1746EB73234BF90100DDAD8B /* PastelColor.swift */,
 				17631A5E234CD08B00B8D62E /* LargerText.swift */,
+				179297BF234F69F80087758C /* Constants.swift */,
+				179297C1234F6BAF0087758C /* News.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -411,6 +420,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				179297BE234F69E40087758C /* GNews.swift in Sources */,
 				17EB4920234B64C2005A7E7A /* SectionHeader.swift in Sources */,
 				1746EB74234BF90100DDAD8B /* PastelColor.swift in Sources */,
 				17EB4924234B65B5005A7E7A /* Category.swift in Sources */,
@@ -421,12 +431,14 @@
 				17392E63234B8FBD009A9C09 /* TrendingWord.swift in Sources */,
 				171AC3DC2346171C00411912 /* AppDelegate.swift in Sources */,
 				49AC0813234CDFC700DD8288 /* BrNewsCategoryV3.mlmodel in Sources */,
+				179297C2234F6BAF0087758C /* News.swift in Sources */,
 				171AC3DE2346171C00411912 /* SceneDelegate.swift in Sources */,
 				49AC0811234CDAE900DD8288 /* TextInputProcessor.swift in Sources */,
 				49AC0817234CE00400DD8288 /* MLModel.swift in Sources */,
 				171AC3E02346171C00411912 /* ContentView.swift in Sources */,
 				17392E59234B8315009A9C09 /* AnalyseTextField.swift in Sources */,
 				1746EB72234BF57000DDAD8B /* AnalyseButton.swift in Sources */,
+				179297C0234F69F80087758C /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
