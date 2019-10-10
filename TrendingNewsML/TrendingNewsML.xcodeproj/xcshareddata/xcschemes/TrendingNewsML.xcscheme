@@ -52,6 +52,16 @@
                ReferencedContainer = "container:TrendingNewsML.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "176528AF234C13F40079523E"
+               BuildableName = "TrendingNewsMLUITests.xctest"
+               BlueprintName = "TrendingNewsMLUITests"
+               ReferencedContainer = "container:TrendingNewsML.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction

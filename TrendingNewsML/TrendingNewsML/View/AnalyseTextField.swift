@@ -20,6 +20,7 @@ struct AnalyseTextField: View {
                 .shadow(color: Color.black.opacity(0.2), radius: 8, x: 0, y: 2)
             VStack(alignment: .leading) {
                 Text(self.largerText.active ? "ANALISAR\nNOTÍCIA" : "ANALISAR NOTÍCIA")
+                    .accessibility(label: Text("Analisar notícia"))
                     .font(.caption)
                     .foregroundColor(Color.gray)
                 TextField("Texto", text: $textToAnalyse)
