@@ -7,6 +7,7 @@
 //
 
 import XCTest
+@testable import TrendingNewsML
 
 class TrendingNewsMLUnitTests: XCTestCase {
 
@@ -29,5 +30,20 @@ class TrendingNewsMLUnitTests: XCTestCase {
             // Put the code you want to measure the time of here.
         }
     }
-
+    
+    func testArticlesRequest() {
+        let promise = expectation(description: "Get list of articles of category")
+        let timeout: TimeInterval = 5 // 5 seconds
+        
+        GNews.getArticles(of: .business) { articles in
+            XCTAssertGreaterThan(articles.count, 0)
+            promise.fulfill()
+        }
+        
+        waitForExpectations(timeout: timeout) { error in
+            if let error = error {
+                XCTFail("waitForExpectationsWithTimeout errored: \(error)")
+            }
+        }
+    }
 }
