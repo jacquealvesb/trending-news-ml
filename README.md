@@ -8,8 +8,7 @@ You can get one by creating an account at [GNews API website](https://gnews.io).
 
 ## Running the app
 
-After getting the key, you'll need to put it on the project so your app can use the API. To do so, create a new Swift file on the *Model* folder and name it *Constants.swift*.
-Open the file you've created and write the following:
+After getting the key, you'll need to put it on the project so your app can use the API. Open *Constants.swift* file on the *Model* folder and replace the *gnewsAPIKey* variable value with your GNews API Key .
 
 ```swift
 // Constants.swift
