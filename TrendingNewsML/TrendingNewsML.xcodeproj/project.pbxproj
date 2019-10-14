@@ -13,7 +13,6 @@
 		171AC3E22346171D00411912 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 171AC3E12346171D00411912 /* Assets.xcassets */; };
 		171AC3E52346171D00411912 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 171AC3E42346171D00411912 /* Preview Assets.xcassets */; };
 		171AC3E82346171D00411912 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 171AC3E62346171D00411912 /* LaunchScreen.storyboard */; };
-		172A7A802354BD14002D233D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172A7A7F2354BD14002D233D /* Constants.swift */; };
 		17392E59234B8315009A9C09 /* AnalyseTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17392E58234B8315009A9C09 /* AnalyseTextField.swift */; };
 		17392E61234B8FAC009A9C09 /* CategoryTrends.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17392E60234B8FAC009A9C09 /* CategoryTrends.swift */; };
 		17392E63234B8FBD009A9C09 /* TrendingWord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17392E62234B8FBD009A9C09 /* TrendingWord.swift */; };
@@ -65,7 +64,6 @@
 		171AC3E42346171D00411912 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		171AC3E72346171D00411912 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		171AC3E92346171D00411912 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		172A7A7F2354BD14002D233D /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		17392E58234B8315009A9C09 /* AnalyseTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyseTextField.swift; sourceTree = "<group>"; };
 		17392E60234B8FAC009A9C09 /* CategoryTrends.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTrends.swift; sourceTree = "<group>"; };
 		17392E62234B8FBD009A9C09 /* TrendingWord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingWord.swift; sourceTree = "<group>"; };
@@ -231,7 +229,6 @@
 				1746EB73234BF90100DDAD8B /* PastelColor.swift */,
 				17631A5E234CD08B00B8D62E /* LargerText.swift */,
 				179297C1234F6BAF0087758C /* Article.swift */,
-				172A7A7F2354BD14002D233D /* Constants.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -537,7 +534,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				179297BE234F69E40087758C /* GNews.swift in Sources */,
-				172A7A802354BD14002D233D /* Constants.swift in Sources */,
 				17EB4920234B64C2005A7E7A /* SectionHeader.swift in Sources */,
 				1746EB74234BF90100DDAD8B /* PastelColor.swift in Sources */,
 				17EB4924234B65B5005A7E7A /* Category.swift in Sources */,
