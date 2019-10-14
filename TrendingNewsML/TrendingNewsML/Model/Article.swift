@@ -8,6 +8,8 @@
 
 import Foundation
 
-class News {
-    
+struct Article {
+    var title: String
+    var description: String
+    var text: String
 }
