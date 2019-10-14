@@ -7,5 +7,6 @@ target 'TrendingNewsML' do
 
   # Pods for TrendingNewsML
   pod 'SwiftLint'
+  pod 'ReadabilityKit'
 
 end
