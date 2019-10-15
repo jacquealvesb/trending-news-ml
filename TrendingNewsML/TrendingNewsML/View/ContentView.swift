@@ -19,10 +19,10 @@ struct ContentView: View {
             ScrollView {
                 VStack(alignment: .leading) {
                     Section(header: SectionHeader(title: "Analisar")) {
-                        AnalyseTextField(textToAnalyse: $textToAnalyse, largerText: largerTextObserver)
+                        AnalyseTextField(textToAnalyse: $textToAnalyse, largerText: largerTextObserver, action: analyze)
                         HStack(alignment: .center) {
                             Spacer()
-                            AnalyseButton()
+                            AnalyseButton(action: analyze)
                             Spacer()
                         }
                     }
@@ -40,6 +40,22 @@ struct ContentView: View {
             .onAppear {
                 UITableView.appearance().separatorColor = .clear
                 UITableView.appearance().backgroundColor = .clear
+            }
+        }
+    }
+    
+    func analyze() {
+        GNews.extractArticle(from: self.textToAnalyse) { (article, error) in // Extracts the text from thr url
+            if let error = error {
+                print(error)
+                return
+            }
+            
+            if let article = article {
+                let topic = MlModel.shared.makePrediction(news: article.text) // Predicts from which category the news is
+                self.selectedCategory = Category(topic: topic) // Updates the selected category
+            } else {
+                return
             }
         }
     }
