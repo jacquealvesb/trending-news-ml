@@ -11,6 +11,9 @@ import SwiftUI
 struct ContentView: View {
     @State private var textToAnalyse: String = ""
     @State private var selectedCategory: Category?
+    @State private var showingAlert: Bool = false
+    
+    var errorAlertConfiguration: (title: String, message: String) = ("Aconteceu alguma coisa de errado.", "Tente novamente.")
     
     let largerTextObserver = LargerText()
     
@@ -41,6 +44,14 @@ struct ContentView: View {
                 UITableView.appearance().separatorColor = .clear
                 UITableView.appearance().backgroundColor = .clear
             }
+            .alert(isPresented: $showingAlert) {
+                Alert(title: Text(self.errorAlertConfiguration.title),
+                      message: Text(self.errorAlertConfiguration.message),
+                      dismissButton: .default(Text("Ok"), action: {
+                        self.textToAnalyse = ""
+                        self.selectedCategory = nil
+                      }))
+            }
         }
     }
     
@@ -48,15 +59,20 @@ struct ContentView: View {
         GNews.extractArticle(from: self.textToAnalyse) { (article, error) in // Extracts the text from thr url
             if let error = error {
                 print(error)
+                self.showingAlert = true
                 return
             }
             
             if let article = article {
                 let topic = MlModel.shared.makePrediction(news: article.text) // Predicts from which category the news is
+                print(topic)
                 self.selectedCategory = Category(topic: topic) // Updates the selected category
             } else {
                 return
             }
+            
+            self.textToAnalyse = ""
+            UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
         }
     }
 }
