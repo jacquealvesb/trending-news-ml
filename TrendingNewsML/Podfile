@@ -7,5 +7,34 @@ target 'TrendingNewsML' do
 
   # Pods for TrendingNewsML
   pod 'SwiftLint'
+  pod 'ReadabilityKit'
 
 end
+
+target 'TrendingNewsMLUnitTests' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for TrendingNewsML
+  pod 'ReadabilityKit'
+
+end
+
+target 'TrendingNewsMLGNewsUnitTests' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for TrendingNewsML
+  pod 'ReadabilityKit'
+
+end
+
+target 'TrendingNewsMLUITests' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for TrendingNewsML
+  pod 'ReadabilityKit'
+
+end
+

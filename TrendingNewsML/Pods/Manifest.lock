@@ -1,16 +1,24 @@
 PODS:
+  - Ji (5.0.0)
+  - ReadabilityKit (0.7.3):
+    - Ji (= 5.0.0)
   - SwiftLint (0.35.0)
 
 DEPENDENCIES:
+  - ReadabilityKit
   - SwiftLint
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  trunk:
+    - Ji
+    - ReadabilityKit
     - SwiftLint
 
 SPEC CHECKSUMS:
+  Ji: d795fed288fe78658b404c88946d753b17d8d7f4
+  ReadabilityKit: d28ec50a317067fd1c06aa6518b05171bb19ce47
   SwiftLint: 5553187048b900c91aa03552807681bb6b027846
 
-PODFILE CHECKSUM: b7de5363a8275a9bf97aadf71ceb5e19f5195892
+PODFILE CHECKSUM: efad4b58c6df2986a098c8e2bf752b3e3f1f6724
 
-COCOAPODS: 1.7.3
+COCOAPODS: 1.8.3
