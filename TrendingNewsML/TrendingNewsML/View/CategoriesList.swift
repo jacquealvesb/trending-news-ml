@@ -15,9 +15,8 @@ struct CategoriesList: View {
     
     let rows: [[Category]] = [[.business, .entertainment],
                               [.health, .science],
-                              [.sports, .technology]]
-    let columns: [[Category]] = [[.business, .health, .sports],
-                                 [.entertainment, .science, .technology]]
+                              [.sports, .technology],
+                              [.nation, .world]]
     
     var body: some View {
         VStack {

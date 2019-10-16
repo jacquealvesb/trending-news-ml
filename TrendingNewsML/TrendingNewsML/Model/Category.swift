@@ -15,4 +15,6 @@ enum Category: String, CaseIterable {
     case science = "Ciência"
     case sports = "Esportes"
     case technology = "Tecnologia"
+    case world = "Mundo"
+    case nation = "Nação"
 }

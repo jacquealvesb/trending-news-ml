@@ -14,13 +14,17 @@ struct CategoryView: View {
                                             .health: Color.Pastel.red,
                                             .science: Color.Pastel.green,
                                             .sports: Color.Pastel.orange,
-                                            .technology: Color.Pastel.purple]
+                                            .technology: Color.Pastel.purple,
+                                            .world: Color.Pastel.cyan,
+                                            .nation: Color.Pastel.yellow]
     static let icons: [Category: String] = [.business: "briefcase.fill",
                                            .entertainment: "tv",
                                            .health: "heart.fill",
                                            .science: "ant.circle",
                                            .sports: "sportscourt.fill",
-                                           .technology: "globe"]
+                                           .technology: "desktopcomputer",
+                                           .world: "globe",
+                                           .nation: "person.3.fill"]
     
     let category: Category
     let selected: Bool
