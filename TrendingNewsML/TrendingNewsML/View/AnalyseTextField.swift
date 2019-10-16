@@ -11,6 +11,7 @@ import SwiftUI
 struct AnalyseTextField: View {
     @Binding var textToAnalyse: String
     @ObservedObject var largerText: LargerText
+    let action: () -> Void
     
     var body: some View {
         ZStack(alignment: .topLeading) {
@@ -23,7 +24,7 @@ struct AnalyseTextField: View {
                     .accessibility(label: Text("Analisar notícia"))
                     .font(.caption)
                     .foregroundColor(Color.gray)
-                TextField("Texto", text: $textToAnalyse)
+                TextField("URL", text: $textToAnalyse, onCommit: action)
                     .padding(.vertical, 5)
             }
             .padding()
@@ -36,6 +37,8 @@ struct AnalyseTextField_Previews: PreviewProvider {
     @State private static var textToAnalyse: String = ""
     
     static var previews: some View {
-        AnalyseTextField(textToAnalyse: AnalyseTextField_Previews.$textToAnalyse, largerText: LargerText())
+        AnalyseTextField(textToAnalyse: AnalyseTextField_Previews.$textToAnalyse, largerText: LargerText()) {
+            print("analisar")
+        }
     }
 }

@@ -52,7 +52,7 @@ struct CategoriesListCell: View {
     
     var body: some View {
         ForEach(categories, id: \.self) { category in
-            NavigationLink(destination: CategoryTrends(category: category, largerTextIsActive: self.largerTextIsActive)) {
+            NavigationLink(destination: CategoryTrends(category: category, largerTextIsActive: self.largerTextIsActive, selectedCategory: self.$selectedCategory)) {
                 CategoryView(category: category, selected: (self.selectedCategory == nil || self.selectedCategory == category), largerTextIsActive: self.largerTextIsActive)
             }.buttonStyle(PlainButtonStyle())
         }

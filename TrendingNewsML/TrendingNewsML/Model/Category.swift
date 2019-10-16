@@ -18,3 +18,24 @@ enum Category: String, CaseIterable {
     case world = "Mundo"
     case nation = "Nação"
 }
+
+extension Category {
+    init(topic: String) {
+        switch topic {
+        case "business":
+            self = .business
+        case "entertainment":
+            self = .entertainment
+        case "health":
+            self = .health
+        case "science":
+            self = .science
+        case "sports":
+            self = .sports
+        case "technology":
+            self = .technology
+        default:
+            self = .business
+        }
+    }
+}
