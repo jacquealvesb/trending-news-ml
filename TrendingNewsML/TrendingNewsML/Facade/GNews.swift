@@ -63,6 +63,10 @@ class GNews {
             topic = "sports"
         case .technology:
             topic = "science"
+        case .world:
+            topic = "world"
+        case .nation:
+            topic = "nation"
         }
         
         return topic

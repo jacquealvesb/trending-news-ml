@@ -16,5 +16,7 @@ extension Color {
         static var red: Color { return Color("pastelRed") }
         static var pink: Color { return Color("pastelPink") }
         static var purple: Color { return Color("pastelPurple") }
+        static var yellow: Color { return Color("pastelYellow") }
+        static var cyan: Color { return Color("pastelCyan") }
     }
 }
