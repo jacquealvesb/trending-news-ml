@@ -9,8 +9,10 @@
 import SwiftUI
 
 struct AnalyseButton: View {
+    let action: () -> Void
+    
     var body: some View {
-        Button(action: analyse) {
+        Button(action: action) {
             Text("Analisar")
                 .padding(.vertical, 5)
                 .padding(.horizontal, 20)
@@ -21,14 +23,12 @@ struct AnalyseButton: View {
         }
         .padding(.bottom, 30)
     }
-    
-    func analyse() {
-        print("analisar")
-    }
 }
 
 struct AnalyseButton_Previews: PreviewProvider {
     static var previews: some View {
-        AnalyseButton()
+        AnalyseButton {
+            print("press")
+        }
     }
 }

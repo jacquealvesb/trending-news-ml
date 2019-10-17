@@ -47,7 +47,7 @@ class GNews {
     
     /// Returns the string referred to the topic of a category
     /// - Parameter category: Category to get topic from
-    private static func getTopic(ofCategory category: Category) -> String {
+    static func getTopic(ofCategory category: Category) -> String {
         var topic: String!
         
         switch category {
@@ -134,7 +134,7 @@ class GNews {
     /// Extracts an article from an url page
     /// - Parameter url: URL from the article to be extracted
     /// - Parameter completionHandler: Handler that deals with the response of the parser
-    private static func extractArticle(from url: String, completionHandler: @escaping (_ article: Article?, _ error: Error?) -> Void) {
+    static func extractArticle(from url: String, completionHandler: @escaping (_ article: Article?, _ error: Error?) -> Void) {
         guard let articleUrl = URL(string: url) else { // Checks if the given url is correct
             completionHandler(nil, GNewsError.wrongURL)
             return

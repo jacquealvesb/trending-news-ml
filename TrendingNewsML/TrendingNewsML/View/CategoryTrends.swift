@@ -14,6 +14,8 @@ struct CategoryTrends: View {
     let category: Category
     let largerTextIsActive: Bool
     
+    @Binding var selectedCategory: Category?
+    
     var body: some View {
         List {
             Text(category.rawValue)
@@ -29,12 +31,15 @@ struct CategoryTrends: View {
         .navigationBarTitle("Temas do momento", displayMode: .inline)
         .onAppear {
             UITableView.appearance().separatorColor = UIColor.systemBackground
+            self.selectedCategory = nil
         }
     }
 }
 
 struct CategoryTrends_Previews: PreviewProvider {
+    @State private static var selectedCategory: Category?
+    
     static var previews: some View {
-        CategoryTrends(category: .business, largerTextIsActive: false)
+        CategoryTrends(category: .business, largerTextIsActive: false, selectedCategory: CategoryTrends_Previews.$selectedCategory)
     }
 }
