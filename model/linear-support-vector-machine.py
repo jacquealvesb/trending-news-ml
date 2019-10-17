@@ -15,14 +15,13 @@ from nltk.corpus import stopwords
 import re 
 from sklearn.decomposition import PCA
 import pylab as pl
+from sklearn.linear_model import SGDClassifier
+from sklearn.pipeline import Pipeline
+from sklearn.feature_extraction.text import TfidfTransformer
+from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
+
 
 df = pandas.read_csv('summarize-texts.csv', sep='\t')
-df = df[df.category != 'entertainment']
-# df = df[df.category != 'business']
-# df = df[df.category != 'nation']
-# df = df[df.category != 'technology']
-# df = df[df.category != 'health']
-
 df.head()
 
 encoder = LabelEncoder()
@@ -53,7 +52,7 @@ for category in set(df['category'].values):
             sentence = re.sub(r'\s+', ' ', sentence) # remove extra spaces from sentences
             sentence = re.sub(r'(?:^| )\w(?:$| )', ' ', sentence).strip() # remove single character words sentences
         category_sentences.append(sentence)
-    print(len(category_sentences))
+
     # split train and test data
     category_sentences_train, category_sentences_test, category_y_train, category_y_test = train_test_split(category_sentences, category_y, test_size=0.2, shuffle=True) # splitting test and train data
 
@@ -65,68 +64,11 @@ for category in set(df['category'].values):
 sentences_train, y_train = shuffle(sentences_train, y_train, random_state = 0)
 sentences_test, y_test = shuffle(sentences_test, y_test, random_state = 0)
 
-tokenizer = Tokenizer(num_words = 50000)
-tokenizer.fit_on_texts(sentences_train)
-x_train = tokenizer.texts_to_sequences(sentences_train)
-x_test = tokenizer.texts_to_sequences(sentences_test)
+sgd = Pipeline([('vect', CountVectorizer()),
+                ('tfidf', TfidfTransformer()),
+                ('clf', SGDClassifier(loss='hinge', penalty='l2',alpha=1e-3, random_state=42, max_iter=1000, tol=None)),
+               ])
+sgd.fit(sentences_train, y_train)
+y_pred = sgd.predict(sentences_test)
 
-vocab_size = len(tokenizer.word_index) + 1 
-
-# maxlen = 0 # size of the largest text
-# for sentence in x_train:
-#     if len(sentence) > maxlen:
-#         maxlen = len(sentence)
-# print(maxlen)
-
-maxlen=1000
-
-x_train = pad_sequences(x_train, padding = 'post', maxlen=maxlen)
-x_test = pad_sequences(x_test, padding='post', maxlen=maxlen)
-
-x_train = np.array(x_train)
-y_train = np.array(y_train)
-
-x_test = np.array(x_test)
-y_test = np.array(y_test)
-
-
-scaler = StandardScaler()
-x_train = scaler.fit_transform(x_train)
-x_test = scaler.transform(x_test)
-
-lin_clf = svm.LinearSVC(C=0.001, class_weight=None, dual=True, fit_intercept=True,
-     intercept_scaling=1, loss='squared_hinge', max_iter=5000,
-     multi_class='ovr', penalty='l2', random_state=None, tol=0.0001,
-     verbose=0)
-lin_clf.fit(x_train, y_train) 
-
-y_pred = lin_clf.predict(x_test)
-metrics_ = accuracy_score(y_test, y_pred)
-print("Accuracy: ",metrics_)
-
-##### graph
-# import matplotlib.pyplot as plt
-# plt.style.use('ggplot')
-
-# def plot_history(history):
-#     acc = history.history['acc']
-#     val_acc = history.history['val_acc']
-#     loss = history.history['loss']
-#     val_loss = history.history['val_loss']
-#     x = range(1, len(acc) + 1)
-
-#     plt.figure(figsize=(12, 5))
-#     plt.subplot(1, 2, 1)
-#     plt.plot(x, acc, 'b', label='Training acc')
-#     plt.plot(x, val_acc, 'r', label='Validation acc')
-#     plt.title('Training and validation accuracy')
-#     plt.legend()
-#     plt.subplot(1, 2, 2)
-#     plt.plot(x, loss, 'b', label='Training loss')
-#     plt.plot(x, val_loss, 'r', label='Validation loss')
-#     plt.title('Training and validation loss')
-#     plt.legend()
-
-#     plt.savefig('graph.png')
-
-# plot_history(history)
+print('accuracy %s' % accuracy_score(y_pred, y_test))
