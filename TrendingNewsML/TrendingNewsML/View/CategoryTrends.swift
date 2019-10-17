@@ -21,6 +21,7 @@ struct CategoryTrends: View {
             Text(category.rawValue)
                 .font(self.largerTextIsActive ? .headline : .largeTitle)
                 .fontWeight(.bold)
+                .listRowBackground(Color(UIColor.systemBackground))
             
             ForEach(trendingWords, id: \.self) { word in
                 TrendingWord(word: word, color: CategoryView.colors[self.category, default: .black], largerTextIsActive: self.largerTextIsActive)
@@ -29,6 +30,7 @@ struct CategoryTrends: View {
         }
         .navigationBarTitle("Temas do momento", displayMode: .inline)
         .onAppear {
+            UITableView.appearance().separatorColor = UIColor.systemBackground
             self.selectedCategory = nil
         }
     }
