@@ -73,6 +73,7 @@ struct ContentView: View {
             
             if let error = error {
                 print(error)
+                self.generator.notificationOccurred(.error)
                 self.showingAlert = true
                 return
             }
