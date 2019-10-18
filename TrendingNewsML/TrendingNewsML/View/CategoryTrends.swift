@@ -7,14 +7,22 @@
 //
 
 import SwiftUI
+import Combine
 
 struct CategoryTrends: View {
-    @State private var trendingWords: [String] = ["Oi", "Tudo", "Bem", "Com", "Você"]
+    @ObservedObject var viewModel = TrendsViewModel()
     
     let category: Category
     let largerTextIsActive: Bool
     
     @Binding var selectedCategory: Category?
+    
+    init(category: Category, largerTextIsActive: Bool, selectedCategory: Binding<Category?>) {
+        self.category = category
+        self.largerTextIsActive = largerTextIsActive
+        self._selectedCategory = selectedCategory
+        self.viewModel = TrendsViewModel(count: 5, ofCategory: category)
+    }
     
     var body: some View {
         List {
@@ -23,7 +31,7 @@ struct CategoryTrends: View {
                 .fontWeight(.bold)
                 .listRowBackground(Color(UIColor.systemBackground))
             
-            ForEach(trendingWords, id: \.self) { word in
+            ForEach(viewModel.trendingWords, id: \.self) { word in
                 TrendingWord(word: word, color: CategoryView.colors[self.category, default: .black], largerTextIsActive: self.largerTextIsActive)
             }
             .listRowBackground(Color(UIColor.systemBackground))
