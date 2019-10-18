@@ -44,6 +44,16 @@ categories = {
 }
 
 ##### Dataset with text-category
+
+# delete rows with text smaller than 1000 words or is number
+for index, row in df.iterrows():
+    if type(row['text']) == str:
+        sentence_len = len(row['text'])
+        if sentence_len < 1000:
+            df = df.drop(index, axis=0)
+    if type(row['text']) != str:
+        df = df.drop(index, axis=0)
+
 textdf = removeColumns(df, columnsText)
 textdf = removeCategories(textdf, categoriesToDelete)
 
@@ -53,17 +63,17 @@ for new, olds in categories.items(): # rename all old categories to the new name
 textdf = selectExamples(textdf, 'text', list(categories.keys()), 1500)
 textdf = textdf[['text', 'category']]
 
-textdf.to_csv('pre-processed-text-dataset.csv', sep='\t')
+textdf.to_csv('pre-processed-text-dataset-length-limit.csv', sep='\t')
 
 ##### Dataset with title-category
-titledf = removeColumns(df, columnsTitle)
-titledf = removeCategories(titledf, categoriesToDelete)
+# titledf = removeColumns(df, columnsTitle)
+# titledf = removeCategories(titledf, categoriesToDelete)
 
-for new, olds in categories.items(): # rename all old categories to the new name
-    titledf = mergeCategories(titledf, olds, new)
+# for new, olds in categories.items(): # rename all old categories to the new name
+#     titledf = mergeCategories(titledf, olds, new)
 
-titledf = selectExamples(titledf, 'title', list(categories.keys()), 1500)
-titledf = titledf[['title', 'category']]
+# titledf = selectExamples(titledf, 'title', list(categories.keys()), 1500)
+# titledf = titledf[['title', 'category']]
 
-titledf.to_csv('pre-processed-title-dataset.csv', sep='\t')
+# titledf.to_csv('pre-processed-title-dataset-length-limit.csv', sep='\t')
 
