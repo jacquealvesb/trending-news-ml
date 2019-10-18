@@ -62,7 +62,7 @@ sentences_test, y_test = shuffle(sentences_test, y_test, random_state = 0)
 
 lrm = Pipeline([('vect', CountVectorizer()),
                ('tfidf', TfidfTransformer()),
-               ('clf', LogisticRegression()),
+               ('clf', LogisticRegression(C=1000)),
               ])
 lrm.fit(sentences_train, y_train)
 y_pred = lrm.predict(sentences_test)
@@ -70,14 +70,14 @@ y_pred = lrm.predict(sentences_test)
 print('accuracy %s' % accuracy_score(y_pred, y_test))
 
 # Export to MLModel
-# input_feature = 'newsText'
-# output_feature = 'category'
-# coreml_model = coremltools.converters.sklearn.convert(classifier, input_feature, output_feature)
+input_feature = 'newsText'
+output_feature = 'category'
+coreml_model = coremltools.converters.sklearn.convert(lrm, input_feature, output_feature)
 
-# coreml_model.author = 'Jacque Alves e Manuella Valença'
-# coreml_model.license = 'MIT License'
-# coreml_model.short_description = 'Brazilian news category prediction.'
-# coreml_model.input_description['newsText'] = 'An article text as a tokenized array.'
-# coreml_model.output_description['category'] = 'Most scored category'
+coreml_model.author = 'Jacque Alves e Manuella Valença'
+coreml_model.license = 'MIT License'
+coreml_model.short_description = 'Brazilian news category prediction with Logistic Regression.'
+coreml_model.input_description['newsText'] = 'An article text'
+coreml_model.output_description['category'] = 'Most scored category'
 
-# coreml_model.save('BrNewsCategoryV3.mlmodel')
+coreml_model.save('BrNewsCategorizerLG.mlmodel')

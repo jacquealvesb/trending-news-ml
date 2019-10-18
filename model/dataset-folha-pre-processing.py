@@ -1,6 +1,6 @@
 import pandas
 
-df = pandas.read_csv('articles.csv')
+df = pandas.read_csv('articles2.csv')
 
 def removeColumns(dataframe, columns): # remove unecessary columns from dataframe
     df = dataframe.drop(columns, axis=1) 
