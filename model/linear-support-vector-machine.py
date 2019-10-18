@@ -19,6 +19,8 @@ from sklearn.linear_model import SGDClassifier
 from sklearn.pipeline import Pipeline
 from sklearn.feature_extraction.text import TfidfTransformer
 from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
+from sklearn.multiclass import OneVsRestClassifier
+from sklearn.svm import LinearSVC
 
 
 df = pandas.read_csv('summarize-texts.csv', sep='\t')
@@ -66,7 +68,7 @@ sentences_test, y_test = shuffle(sentences_test, y_test, random_state = 0)
 
 sgd = Pipeline([('vect', CountVectorizer()),
                 ('tfidf', TfidfTransformer()),
-                ('clf', SGDClassifier(loss='hinge', penalty='l2',alpha=1e-3, random_state=42, max_iter=1000, tol=None)),
+                ('clf', OneVsRestClassifier(LinearSVC()))
                ])
 sgd.fit(sentences_train, y_train)
 y_pred = sgd.predict(sentences_test)
