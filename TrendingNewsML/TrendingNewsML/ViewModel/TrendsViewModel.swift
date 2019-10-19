@@ -11,6 +11,7 @@ import Combine
 
 class TrendsViewModel: ObservableObject {
     @Published var trendingWords: [String] = [String]()
+    @Published var fetching: Bool = false
     
     init() {}
     
@@ -22,6 +23,7 @@ class TrendsViewModel: ObservableObject {
     /// - Parameter count: Number of words to be get
     /// - Parameter category: Category of the top news
     private func getWords(count: Int, ofCategory category: Category) {
+        self.fetching = true
         GNews.getArticles(of: category) { articles in
             let texts = articles.map { $0.text } // Get article texts
             var wordCount = self.wordCount(of: texts) // Get word count from the texts
@@ -32,6 +34,7 @@ class TrendsViewModel: ObservableObject {
             let firstNWords = firstN.map { String($0.key) } // Convert them to strings
             
             self.trendingWords.append(contentsOf: firstNWords)
+            self.fetching = false
         }
     }
     

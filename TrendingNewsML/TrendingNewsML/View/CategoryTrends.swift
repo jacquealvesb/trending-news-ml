@@ -25,16 +25,23 @@ struct CategoryTrends: View {
     }
     
     var body: some View {
-        List {
-            Text(category.rawValue)
-                .font(self.largerTextIsActive ? .headline : .largeTitle)
-                .fontWeight(.bold)
+        ZStack {
+            List {
+                Text(category.rawValue)
+                    .font(self.largerTextIsActive ? .headline : .largeTitle)
+                    .fontWeight(.bold)
+                    .listRowBackground(Color(UIColor.systemBackground))
+                ForEach(viewModel.trendingWords, id: \.self) { word in
+                    TrendingWord(word: word, color: CategoryView.colors[self.category, default: .black], largerTextIsActive: self.largerTextIsActive)
+                }
                 .listRowBackground(Color(UIColor.systemBackground))
-            
-            ForEach(viewModel.trendingWords, id: \.self) { word in
-                TrendingWord(word: word, color: CategoryView.colors[self.category, default: .black], largerTextIsActive: self.largerTextIsActive)
             }
-            .listRowBackground(Color(UIColor.systemBackground))
+            VStack {
+                ActivityIndicator(isAnimating: self.$viewModel.fetching, style: .large)
+                Text("BUSCANDO")
+                    .font(.caption)
+                    .foregroundColor(self.viewModel.fetching ? Color.gray : Color.clear)
+            }
         }
         .navigationBarTitle("Temas do momento", displayMode: .inline)
         .onAppear {
