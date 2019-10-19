@@ -6,6 +6,7 @@
 //  Copyright © 2019 maqueline. All rights reserved.
 //
 
+import Foundation
 import Combine
 
 class TrendsViewModel: ObservableObject {
@@ -22,7 +23,10 @@ class TrendsViewModel: ObservableObject {
     /// - Parameter category: Category of the top news
     private func getWords(count: Int, ofCategory category: Category) {
         GNews.getArticles(of: category) { articles in
-            let wordCount = self.wordCount(of: articles) // Get word count from the articles
+            let texts = articles.map { $0.text } // Get article texts
+            var wordCount = self.wordCount(of: texts) // Get word count from the texts
+            let stopwords = self.stopwords()
+            wordCount = wordCount.filter { !stopwords.contains($0.key.lowercased()) } // Remove all stopwords from dictionary
             let sortedWords = wordCount.sorted { $0.1 > $1.1 } // Sort in ascending order according to count
             let firstN = sortedWords.prefix(count) // Get n more common words
             let firstNWords = firstN.map { String($0.key) } // Convert them to strings
@@ -33,12 +37,13 @@ class TrendsViewModel: ObservableObject {
     
     /// Counts the number of times each word is found on the articles
     /// - Parameter articles: List of top news
-    private func wordCount(of articles: [Article]) -> [String.SubSequence: Int] {
+    private func wordCount(of strings: [String]) -> [String.SubSequence: Int] {
         var wordCount: [String.SubSequence: Int] = [:]
         
-        for article in articles {
-            let words = article.text.split { !$0.isLetter } // Splits the words from the text removing spaces and punctuation
-            for word in words { // Add to the dictionary the count of each word found
+        for string in strings {
+            let words = string.split { !$0.isLetter } // Splits the words from the text removing spaces and punctuation
+            let wordsNotRepeating = Set(words)
+            for word in wordsNotRepeating { // Add to the dictionary the count of each word found
                 if wordCount[word] == nil {
                     wordCount[word] = 0
                 }
@@ -48,5 +53,21 @@ class TrendsViewModel: ObservableObject {
         }
         
         return wordCount
+    }
+    
+    /// Get a list of stopwords present on a txt file
+    private func stopwords() -> [String] {
+        var stopwords = [String]()
+        
+        if let path = Bundle.main.path(forResource: "stopwords", ofType: "txt") {
+            if let content = try? String(contentsOfFile: path) {
+                let wordsSplit = content.split { !$0.isLetter }
+                let words = wordsSplit.map { String($0) }
+                
+                stopwords.append(contentsOf: words)
+            }
+        }
+        
+        return stopwords
     }
 }

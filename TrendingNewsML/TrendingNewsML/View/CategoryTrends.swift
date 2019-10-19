@@ -10,7 +10,7 @@ import SwiftUI
 import Combine
 
 struct CategoryTrends: View {
-    @ObservedObject var viewModel = TrendsViewModel()
+    @ObservedObject var viewModel: TrendsViewModel
     
     let category: Category
     let largerTextIsActive: Bool
