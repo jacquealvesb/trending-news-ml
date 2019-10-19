@@ -20,46 +20,51 @@ struct ContentView: View {
     let generator = UINotificationFeedbackGenerator()
     
     var body: some View {
-        ZStack {
-            NavigationView {
-                ScrollView {
-                    VStack(alignment: .leading) {
-                        
-                        Section(header: SectionHeader(title: "Analisar")) {
-                            AnalyseTextField(textToAnalyse: $textToAnalyse, largerText: largerTextObserver, action: analyze)
-                            HStack(alignment: .center) {
-                                Spacer()
-                                AnalyseButton(action: analyze)
-                                Spacer()
+        NavigationView {
+            ScrollView {
+                VStack(alignment: .leading) {
+                    
+                    Section(header: SectionHeader(title: "Analisar")) {
+                        AnalyseTextField(textToAnalyse: $textToAnalyse, largerText: largerTextObserver, action: analyze)
+                        HStack(alignment: .center) {
+                            Spacer()
+                            AnalyseButton(action: analyze)
+                            Spacer()
+                        }
+                    }
+                    .padding(.horizontal)
+                    
+                    Section(header: SectionHeader(title: "Categorias")) {
+                        ZStack {
+                            CategoriesList(selectedCategory: $selectedCategory, largerText: largerTextObserver)
+                                .opacity(self.loading ? 0 : 1)
+                            
+                            VStack {
+                                ActivityIndicator(isAnimating: $loading, style: .large)
+                                Text("ANALISANDO")
+                                    .font(.caption)
+                                    .foregroundColor(self.loading ? Color.gray : Color.clear)
                             }
                         }
-                        .padding(.horizontal)
-
-                        Section(header: SectionHeader(title: "Categorias")) {
-                            CategoriesList(selectedCategory: $selectedCategory, largerText: largerTextObserver)
-                        }
-                        .padding(.horizontal)
                     }
-                }
-                .navigationBarTitle("Notícias")
-                .listStyle(GroupedListStyle())
-                .padding(.top)
-                .onAppear {
-                    UITableView.appearance().separatorColor = .clear
-                    UITableView.appearance().backgroundColor = .clear
-                }
-                .alert(isPresented: $showingAlert) {
-                    Alert(title: Text(self.errorAlertConfiguration.title),
-                          message: Text(self.errorAlertConfiguration.message),
-                          dismissButton: .default(Text("Ok"), action: {
-                            self.textToAnalyse = ""
-                            self.selectedCategory = nil
-                          }))
+                    .padding(.horizontal)
                 }
             }
-            .blur(radius: self.loading ? 3 : 0)
-            
-            ActivityIndicator(isAnimating: $loading, style: .large)
+            .navigationBarTitle("Notícias")
+            .listStyle(GroupedListStyle())
+            .padding(.top)
+            .onAppear {
+                UITableView.appearance().separatorColor = .clear
+                UITableView.appearance().backgroundColor = .clear
+            }
+            .alert(isPresented: $showingAlert) {
+                Alert(title: Text(self.errorAlertConfiguration.title),
+                      message: Text(self.errorAlertConfiguration.message),
+                      dismissButton: .default(Text("Ok"), action: {
+                        self.textToAnalyse = ""
+                        self.selectedCategory = nil
+                      }))
+            }
         }
     }
     
