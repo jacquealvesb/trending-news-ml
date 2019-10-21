@@ -27,7 +27,8 @@ class TrendingNewsMLUITests: XCTestCase {
             }
         }
     }
-    
+   
+    /*
     func testCategoriesButtons() {
         let app = XCUIApplication()
         app.launch()
@@ -49,6 +50,7 @@ class TrendingNewsMLUITests: XCTestCase {
         
         XCTAssertLessThanOrEqual(size.width, app.tables.firstMatch.frame.width)
     }
+ */
     
     func testCategoriesButtonsLabelTruncates() {
         let app = XCUIApplication()
