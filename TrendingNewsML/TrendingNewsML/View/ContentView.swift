@@ -17,6 +17,7 @@ struct ContentView: View {
     var errorAlertConfiguration: (title: String, message: String) = ("Aconteceu alguma coisa de errado.", "Tente novamente.")
     
     let largerTextObserver = LargerText()
+    let generator = UINotificationFeedbackGenerator()
     
     var body: some View {
         ZStack {
@@ -65,12 +66,14 @@ struct ContentView: View {
     func analyze() {
         self.loading = true
         GNews.extractArticle(from: self.textToAnalyse) { (article, error) in // Extracts the text from thr url
+            self.generator.notificationOccurred(.success) // Haptic feedback
             self.loading = false // Remove activity indicator
             self.textToAnalyse = "" // Clear text field
             UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil) // Hide keyboard
             
             if let error = error {
                 print(error)
+                self.generator.notificationOccurred(.error)
                 self.showingAlert = true
                 return
             }
