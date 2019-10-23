@@ -85,8 +85,13 @@ struct ContentView: View {
             
             if let article = article {
                 let topic = MlModel.shared.makePrediction(news: article.text) // Predicts from which category the news is
-                print(topic)
-                self.selectedCategory = Category(topic: topic) // Updates the selected category
+                
+                if topic == "" {
+                    self.generator.notificationOccurred(.error)
+                    self.showingAlert = true
+                } else {
+                    self.selectedCategory = Category(topic: topic) // Updates the selected category
+                }
             } else {
                 return
             }
