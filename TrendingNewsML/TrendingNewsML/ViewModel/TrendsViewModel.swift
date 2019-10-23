@@ -16,7 +16,7 @@ class TrendsViewModel: ObservableObject {
     init() {}
     
     init(count: Int, ofCategory category: Category) {
-//        self.getWords(count: count, ofCategory: category)
+        self.getWords(count: count, ofCategory: category)
     }
     
     /// Get n more common words in a list of top news from a category
