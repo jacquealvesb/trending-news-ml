@@ -24,12 +24,24 @@ struct AnalyseTextField: View {
                     .accessibility(label: Text("Analisar notícia"))
                     .font(.caption)
                     .foregroundColor(Color.gray)
-                TextField("URL", text: $textToAnalyse, onCommit: action)
-                    .padding(.vertical, 5)
+                HStack {
+                    TextField("URL", text: $textToAnalyse, onCommit: action)
+                        .padding(.vertical, 5)
+                    if self.textToAnalyse != "" {
+                        Button(action: self.clearText) {
+                            Image(systemName: "xmark.circle.fill")
+                                .foregroundColor(Color.gray.opacity(0.4))
+                        }
+                    }
+                }
             }
             .padding()
         }
         .padding(.bottom)
+    }
+    
+    func clearText() {
+        self.textToAnalyse = ""
     }
 }
 
