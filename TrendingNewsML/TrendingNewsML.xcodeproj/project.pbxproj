@@ -73,7 +73,7 @@
 		17117C6623550BC60088FACB /* TrendingNewsMLGNewsUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TrendingNewsMLGNewsUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		17117C6823550BC60088FACB /* TrendingNewsMLGNewsUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingNewsMLGNewsUnitTests.swift; sourceTree = "<group>"; };
 		17117C6A23550BC60088FACB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		171AC3D82346171C00411912 /* TrendingNewsML.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TrendingNewsML.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		171AC3D82346171C00411912 /* AtualizAI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AtualizAI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		171AC3DB2346171C00411912 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		171AC3DD2346171C00411912 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		171AC3DF2346171C00411912 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -179,7 +179,7 @@
 		171AC3D92346171C00411912 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				171AC3D82346171C00411912 /* TrendingNewsML.app */,
+				171AC3D82346171C00411912 /* AtualizAI.app */,
 				178F53832348E580009BAAB6 /* TrendingNewsMLUnitTests.xctest */,
 				176528B0234C13F40079523E /* TrendingNewsMLUITests.xctest */,
 				17117C6623550BC60088FACB /* TrendingNewsMLGNewsUnitTests.xctest */,
@@ -353,7 +353,7 @@
 			);
 			name = TrendingNewsML;
 			productName = TrendingNewsML;
-			productReference = 171AC3D82346171C00411912 /* TrendingNewsML.app */;
+			productReference = 171AC3D82346171C00411912 /* AtualizAI.app */;
 			productType = "com.apple.product-type.application";
 		};
 		176528AF234C13F40079523E /* TrendingNewsMLUITests */ = {
@@ -759,7 +759,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TrendingNewsML.app/TrendingNewsML";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AtualizAÍ.app/AtualizAÍ";
 			};
 			name = Debug;
 		};
@@ -780,7 +780,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TrendingNewsML.app/TrendingNewsML";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AtualizAÍ.app/AtualizAÍ";
 			};
 			name = Release;
 		};
@@ -914,9 +914,9 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = maqueline.TrendingNewsML;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = AtualizAI;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -936,9 +936,9 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = maqueline.TrendingNewsML;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = AtualizAI;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -999,7 +999,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TrendingNewsML.app/TrendingNewsML";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AtualizAÍ.app/AtualizAÍ";
 			};
 			name = Debug;
 		};
@@ -1020,7 +1020,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TrendingNewsML.app/TrendingNewsML";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AtualizAÍ.app/AtualizAÍ";
 			};
 			name = Release;
 		};
