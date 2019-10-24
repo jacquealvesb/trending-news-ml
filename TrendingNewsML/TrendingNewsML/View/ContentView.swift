@@ -69,12 +69,12 @@ struct ContentView: View {
     }
     
     func analyze() {
+        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil) // Hide keyboard
         self.loading = true
         GNews.extractArticle(from: self.textToAnalyse) { (article, error) in // Extracts the text from thr url
             self.generator.notificationOccurred(.success) // Haptic feedback
             self.loading = false // Remove activity indicator
             self.textToAnalyse = "" // Clear text field
-            UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil) // Hide keyboard
             
             if let error = error {
                 print(error)
