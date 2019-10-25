@@ -97,11 +97,11 @@ class TextInputProcessor {
         // Uses flatmap in $1 (all the values)
         var sum = vector.flatMap{ $1 }.reduce(0) { $0 + $1*$1 }
         sum = sqrt(sum)
-        var n = [Int:Double]()
+        var newVector = [Int:Double]()
         vector.forEach({ (key, value) in
-            n[key] = value / sum
+            newVector[key] = value / sum
         })
-        return n
+        return newVector
     }
     
     // Transform String into MLMultiArray.

@@ -11,7 +11,7 @@ import Foundation
 
 class MlModel {
     static let shared = MlModel()
-    let model = BrNewsCategoryV3()
+    let model = BrNewsCategoryLG2()
     
     // Requests a prediction from the model with the news article text as a MLMultiarray
     func makePrediction(news: String) -> String {
