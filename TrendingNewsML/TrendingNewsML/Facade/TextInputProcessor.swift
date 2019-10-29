@@ -35,7 +35,7 @@ class TextInputProcessor {
     
     // Load idf (inverse document frequency) of each world from the corpus trained in the model
     // Also needs to be created at the same time the model was trained
-    func loadIdf(){
+    func loadIdf() {
         let path = Bundle.main.url(forResource: "words_idf", withExtension: "json")
         do {
             let idfData = try Data(contentsOf: path!)

@@ -34,6 +34,10 @@ extension Category {
             self = .sports
         case "technology":
             self = .technology
+        case "world":
+            self = .world
+        case "nation":
+            self = .nation
         default:
             self = .business
         }
